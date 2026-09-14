@@ -9,7 +9,8 @@
 void setup()
 {
   Serial.begin(115200);
-  iniciarTimer(PERIODO_TIMER_HW);
+  iniciarT
+imer(PERIODO_TIMER_HW);
   inicializarADC();
   inicializarPWM();
 }
