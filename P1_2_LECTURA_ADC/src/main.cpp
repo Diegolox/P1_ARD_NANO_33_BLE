@@ -1,17 +1,20 @@
 #include <Arduino.h>
 
-int myFunction(int, int);
+#define ADC_PIN A0
+#define T 1000
+
+int lecturaADC(int pin);
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(115200);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  Serial.print("Valor ADC: ");
+  Serial.println(lecturaADC(ADC_PIN));
+  delay(T);
 }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+int lecturaADC(int pin) {
+  return analogRead(pin);
 }
