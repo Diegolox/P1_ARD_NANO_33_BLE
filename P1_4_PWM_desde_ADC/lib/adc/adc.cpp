@@ -1,12 +1,12 @@
 #include "adc.h"
 #include <Arduino.h>
 
-void inicializarPWM(){
-  actualizarPWM(PWM_PIN, PWM_init);
+void inicializarPWM(int pin, int dutty_init){
+  actualizarPWM(pin, dutty_init);
 }
 
-void inicializarADC(){
-  analogReadResolution(ADC_RESOLUTION); // Resolución ADC n bits, en este caso 4095
+void inicializarADC(int resolution){
+  analogReadResolution(resolution); // Resolución ADC n bits, en este caso 4095
 }
 
 int leerADC(int pin, int scale, int resolution) {

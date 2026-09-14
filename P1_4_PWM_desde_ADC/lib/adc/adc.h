@@ -11,10 +11,12 @@
 #define ADC_RESOLUTION 12 // Resolución ADC n bits, en este caso 4095
 #define ADC_MAX 4095
 
-void inicializarPWM();
-void inicializarADC();
+void inicializarADC(int resolution);
 int leerADC(int pin, int scale, int resolution);
+
+void inicializarPWM(int pin, int dutty_init);
 void actualizarPWM(int pin, int dutty);
+
 void ADC_to_PWM();
 
 #endif

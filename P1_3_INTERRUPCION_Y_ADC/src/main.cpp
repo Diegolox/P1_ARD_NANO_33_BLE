@@ -3,22 +3,20 @@
 #include "adc.h"
 
 
-#define PERIODO_TIMER_HW 1000000 // f reloj 1 MHz 
+#define PERIODO_TIMER_HW 10000000 // f reloj 1 MHz 
 
 
 void setup()
 {
   Serial.begin(115200);
   iniciarTimer(PERIODO_TIMER_HW);
-  inicializarADC();
-  inicializarPWM();
+  inicializarADC(ADC_RESOLUTION);
 }
 
 void loop()
 {
   if (hayInterrupcionTimer())
   {
-    ADC_to_PWM();
+    leerADC(ADC_PIN);
   }
 }
-
