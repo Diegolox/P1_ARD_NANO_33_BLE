@@ -1,27 +1,22 @@
 #include <Arduino.h>
+#include "timer.h"
 
-//Constantes globales
 #define ADC_PIN A0
-#define T 1000
+#define PERIODO_TIMER_HW 1000000 // f reloj 1 MHz 
 
-// Variables globales
-float tension = 0.0;
-
-// Prototipos de funciones
-float leerTension(int pin);
-
-void setup() {
+void setup()
+{
   Serial.begin(115200);
+  iniciarTimer(PERIODO_TIMER_HW);
 }
 
-void loop() {
-  tension = leerTension(ADC_PIN);
-  char buffer[40];
-  sprintf(buffer, "La tensión del adc es: %s V", tension);
-  Serial.println(buffer);
-  delay(T);
-}
+void loop()
+{
+  if (hayInterrupcionTimer())
+  {
+      int lectura = analogRead(ADC_PIN);
 
-float leerTension(int pin) {
-  return (analogRead(pin) * 3.3) / 1023;
+      Serial.print("Lectura ADC: ");
+      Serial.println(lectura);
+  }
 }
