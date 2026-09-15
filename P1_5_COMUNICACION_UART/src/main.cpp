@@ -1,18 +1,23 @@
 #include <Arduino.h>
+#include "hal/timer.h"
+#include "hal/adc.h"
+#include "hal/pwm.h"
+#include "config.h"
 
-// put function declarations here:
-int myFunction(int, int);
+#define PERIODO_TIMER_HW 1000000 // f reloj 1 MHz 
 
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+void setup()
+{
+  Serial.begin(115200);
+  iniciarTimer(PERIODO_TIMER_HW);
+  inicializarADC(ADC_RESOLUTION);
+  inicializarPWM(PWM_PIN, FRECUENCIA_PWM);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+void loop()
+{
+  if (hayInterrupcionTimer())
+  {
+    ADC_to_PWM();
+  }
 }
