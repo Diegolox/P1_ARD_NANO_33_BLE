@@ -1,4 +1,21 @@
 # P1_LAB
-Prráctica 1 lab sensores
 
-<img src="docs/img/ESQUEMA_FICHEROS.svg" alt="Esquema del proyecto">
+### ESTRUCTURA Y ORGANIZACIÓN DEL CÓDIGO
+
+Tras realizar unas primeras pruebas con el **Arduino Nano 33 BLE** mediante **PlatformIO**, en las que se comprobó el funcionamiento del ADC y del LED integrado, en el tercer programa se estableció una estructura de código más limpia, modular y escalable.
+
+<img src="docs/img/ESQUEMA_FICHEROS.svg" alt="Estructura de archivos del proyecto">
+
+Como se observa en la imagen, los archivos de cabecera `.h` se encuentran en la carpeta `include`, mientras que sus implementaciones `.cpp` están en `src`.
+
+La capa `hal` contiene las funciones relacionadas directamente con el hardware, como el ADC, el PWM, los temporizadores y los periféricos de comunicación. Por otro lado, la capa `app` contiene la lógica de más alto nivel, como la máquina de estados finita (MEF), la interpretación de los mensajes recibidos y el funcionamiento general de la aplicación.
+
+Además, `config.h` agrupa la configuración general del proyecto y `main.cpp` se encarga de inicializar los diferentes módulos y ejecutar la aplicación.
+
+Esta organización permite obtener un código más comprensible, mantenible y escalable.
+
+### LECTURA DEL ADC
+
+### TEMPORIZADOR HARDWARE
+
+### SALIDA PWM A PARTIR DEL ADC
