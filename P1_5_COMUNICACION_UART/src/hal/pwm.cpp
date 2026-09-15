@@ -1,3 +1,4 @@
+#include "hal/pwm.h"
 #include "config.h"
 #include <Arduino.h>
 #include <mbed.h>
