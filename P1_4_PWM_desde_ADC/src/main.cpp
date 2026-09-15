@@ -1,6 +1,8 @@
 #include <Arduino.h>
-#include "timer.h"
-#include "adc.h"
+#include "hal/timer.h"
+#include "hal/adc.h"
+#include "hal/pwm.h"
+#include "config.h"
 
 #define PERIODO_TIMER_HW 1000000 // f reloj 1 MHz 
 
