@@ -11,6 +11,7 @@ Como se observa en la imagen, los archivos de cabecera `.h` se encuentran en la 
 La capa `hal` contiene las funciones relacionadas directamente con el hardware, como el ADC, el PWM, los temporizadores y los periféricos de comunicación. Por otro lado, la capa `app` contiene la lógica de más alto nivel, como la máquina de estados (MEF), interpretación de mensajes recibidos y funcionamiento general de la aplicación.
 
 Por otro lado, `config.h` agrupa los pines que se utilizan, variables globales y otras constantes de interñes.
+
 Y `main.cpp` se encarga de inicializar los diferentes módulos y ejecutar la aplicación a alto nivel.
 
 Esta organización permite obtener un código más comprensible, mantenible y escalable.
