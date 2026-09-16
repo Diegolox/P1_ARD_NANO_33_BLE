@@ -12,14 +12,19 @@
 void setup()
 {
   initSerial();
-  initTimer(PERIODO_TIMER_HW);
+  //setTimer(PERIODO_TIMER_HW);
+  stopTimer();
   initADC(ADC_RESOLUTION);
   initPWM(PWM_PIN, FRECUENCIA_PWM);
 }
 
 void loop()
 {
-
+  procesarComando();
+  if(hayInterrupcionTimer())
+  {
+    printADC();
+  }
 }
 
 

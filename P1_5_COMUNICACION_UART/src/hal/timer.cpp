@@ -11,7 +11,7 @@ static void isrTimer3() {
   }
 }
 
-void initTimer(uint32_t periodoMicrosegundos) {
+void setTimer(uint32_t periodoMicrosegundos) {
 
   NRF_TIMER3->TASKS_STOP = 1;    // Detiene el timer por seguridad
   NRF_TIMER3->TASKS_CLEAR = 1;   // Reinicia el contador a cero
@@ -34,6 +34,18 @@ void initTimer(uint32_t periodoMicrosegundos) {
   NVIC_EnableIRQ(TIMER3_IRQn);
 
   NRF_TIMER3->TASKS_START = 1;   // Inicia el timer
+}
+
+
+void stopTimer()
+{
+    NRF_TIMER3->TASKS_STOP = 1;
+    NRF_TIMER3->INTENCLR =
+        1UL << TIMER_INTENCLR_COMPARE0_Pos;
+
+    noInterrupts();
+    interrupcionTimer = false;
+    interrupts();
 }
 
 bool hayInterrupcionTimer() {
