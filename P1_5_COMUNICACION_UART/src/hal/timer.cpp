@@ -11,7 +11,7 @@ static void isrTimer3() {
   }
 }
 
-void iniciarTimer(uint32_t periodoMicrosegundos) {
+void initTimer(uint32_t periodoMicrosegundos) {
 
   NRF_TIMER3->TASKS_STOP = 1;    // Detiene el timer por seguridad
   NRF_TIMER3->TASKS_CLEAR = 1;   // Reinicia el contador a cero

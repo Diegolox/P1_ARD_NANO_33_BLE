@@ -8,7 +8,7 @@
 // nullptr: al empezar todavía no se ha creado ningún PWM.
 static mbed::PwmOut* pwm = nullptr;
 
-void inicializarPWM(int pin, int frecuencia) {
+void initPWM(int pin, int frecuencia) {
   
   // Crea el PWM hardware asociado al pin Arduino indicado.
   // digitalPinToPinName() convierte, por ejemplo, A1 al pin interno del microcontrolador.

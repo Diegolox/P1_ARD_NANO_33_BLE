@@ -1,9 +1,9 @@
 #include <Arduino.h>
-#include <config.h>
+#include "config.h"
 
 void initSerial()
 {
-    Serial.begin(BAUDRATRE);
+    Serial.begin(BAUDRATE);
 }
 
 String leerSerial()
@@ -19,3 +19,4 @@ String leerSerial()
 
     return mensaje;
 }
+

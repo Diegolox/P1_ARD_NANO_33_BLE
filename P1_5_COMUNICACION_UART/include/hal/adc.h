@@ -2,8 +2,10 @@
 #define ADC_H
 
 
-void inicializarADC(int resolution);
-int leerADC(int pin, int scale, int resolution);
+void initADC(int resolution);
+int ADC_to_dutty(int pin, int scale, int resolution);
+
+void printADC();
 
 void ADC_to_PWM();
 

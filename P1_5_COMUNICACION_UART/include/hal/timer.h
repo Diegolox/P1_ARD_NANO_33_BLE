@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-void iniciarTimer(uint32_t periodoMicrosegundos);
+void initTimer(uint32_t periodoMicrosegundos);
 bool hayInterrupcionTimer();
 
 #endif

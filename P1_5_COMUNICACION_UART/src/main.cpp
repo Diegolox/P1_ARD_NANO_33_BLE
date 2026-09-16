@@ -2,6 +2,8 @@
 #include "hal/timer.h"
 #include "hal/adc.h"
 #include "hal/pwm.h"
+#include "hal/uart.h"
+#include "app/protocolo.h"
 #include "config.h"
 
 #define PERIODO_TIMER_HW 1000000 // f reloj 1 MHz 
@@ -9,22 +11,15 @@
 
 void setup()
 {
-    Serial.begin(115200);
-
-    while (!Serial) {
-        // Espera a que el ordenador abra el puerto serie
-    }
+  initSerial();
+  initTimer(PERIODO_TIMER_HW);
+  initADC(ADC_RESOLUTION);
+  initPWM(PWM_PIN, FRECUENCIA_PWM);
 }
 
 void loop()
 {
-    if (Serial.available() > 0)
-    {
-        String mensaje = Serial.readStringUntil('\n');
 
-        Serial.print("Arduino ha recibido: ");
-        Serial.println(mensaje);
-    }
 }
 
 
