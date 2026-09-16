@@ -13,4 +13,6 @@
 #define TIMER_PERIOD_US 1000000
 #define FRECUENCIA_PWM 7000
 
+#define BAUDRATRE 115200
+
 #endif
