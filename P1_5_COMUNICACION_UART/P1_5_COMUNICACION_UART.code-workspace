@@ -2,6 +2,10 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"name": "P1_6_COMUNICACION_I2C",
+			"path": "../P1_6_COMUNICACION_I2C"
 		}
 	],
 	"settings": {}
