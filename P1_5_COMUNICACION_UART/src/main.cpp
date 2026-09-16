@@ -6,6 +6,29 @@
 
 #define PERIODO_TIMER_HW 1000000 // f reloj 1 MHz 
 
+
+void setup()
+{
+    Serial.begin(115200);
+
+    while (!Serial) {
+        // Espera a que el ordenador abra el puerto serie
+    }
+}
+
+void loop()
+{
+    if (Serial.available() > 0)
+    {
+        String mensaje = Serial.readStringUntil('\n');
+
+        Serial.print("Arduino ha recibido: ");
+        Serial.println(mensaje);
+    }
+}
+
+/*
+
 void setup()
 {
   Serial.begin(115200);
@@ -21,3 +44,5 @@ void loop()
     ADC_to_PWM();
   }
 }
+
+*/
