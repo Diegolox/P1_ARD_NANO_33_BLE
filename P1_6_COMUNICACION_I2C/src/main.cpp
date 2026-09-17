@@ -1,31 +1,26 @@
 #include <Arduino.h>
 #include <Wire.h>
+#include "hal/I2C.h"
+#include "hal/uart.h"
 
 #define DIRECCION_ESP32 0x08
 
 void setup()
 {
-    Serial.begin(115200);
-
-    // Nano configurado como maestro
-    Wire.begin();
+    initSerial();
+    initI2C();
 }
 
 void loop()
 {
-    // Solicita 4 bytes al ESP32
-    Wire.requestFrom(DIRECCION_ESP32, 4);
-
-    while (Wire.available())
-    {
-        char dato = Wire.read();
-        Serial.print(dato);
-    }
-
-    Serial.println();
+    char enviado = '0';
+    escribirI2C(DIRECCION_ESP32, uint8_t(enviado));
+    delay(500);
+    
+    char recibido = char(leerI2C(DIRECCION_ESP32));
+    Serial.println(recibido);
     delay(1000);
 }
-
 
 
 
