@@ -4,7 +4,7 @@
 #include "hal/pwm.h"
 #include "hal/timer.h"
 
-void procesarComando()
+void procesarComandoSerial()
 {
     String mensaje = leerSerial();
 
@@ -37,5 +37,10 @@ void procesarComando()
         snprintf(buffer, sizeof(buffer), "El dutty de la PWM es: %d", dutty);
         Serial.println(buffer);
     }
+
+}
+
+
+void enviarMensajeI2C(){
 
 }

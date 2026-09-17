@@ -20,7 +20,7 @@ void setup()
 
 void loop()
 {
-  procesarComando();
+  procesarComandoSerial();
   if(hayInterrupcionTimer())
   {
     printADC();

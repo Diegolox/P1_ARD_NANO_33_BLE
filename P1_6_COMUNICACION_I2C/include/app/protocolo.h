@@ -2,7 +2,7 @@
 #define PROTOCOLO_H
 
 
-void procesarComando();
+void procesarComandoSerial();
 
 
 #endif
