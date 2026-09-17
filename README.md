@@ -21,7 +21,7 @@ Se ha realizado la lectura del ADC con la función `analogRead` de Arduino. El c
 
 <p align="center">
   <video
-    src="https://github.com/Diegolox/P1_ARD_NANO_33_BLE/raw/refs/heads/main/docs/vid/ADC_READ.mp4"
+    src="https://github.com/Diegolox/P1_ARD_NANO_33_BLE/blob/main/docs/vid/ADC_READ.mp4"
     controls
     width="75%">
   </video>
