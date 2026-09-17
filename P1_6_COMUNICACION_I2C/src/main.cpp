@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <Wire.h>
 #include "hal/I2C.h"
 #include "hal/uart.h"
 
@@ -13,16 +12,12 @@ void setup()
 
 void loop()
 {
-    char enviado = '0';
-    escribirI2C(DIRECCION_ESP32, uint8_t(enviado));
-    delay(500);
-    
-    char recibido = char(leerI2C(DIRECCION_ESP32));
-    Serial.println(recibido);
-    delay(1000);
+  escribirI2C(DIRECCION_ESP32, 0); // Apagar LED
+  delay(500);
+
+  escribirI2C(DIRECCION_ESP32, 1); // Encender LED
+  delay(500);
 }
-
-
 
 /*
 #include <Arduino.h>
