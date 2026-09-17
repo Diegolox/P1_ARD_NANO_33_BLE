@@ -19,7 +19,7 @@ Esta organización permite obtener un código más comprensible, mantenible y es
 ### LECTURA DEL ADC
 Se ha realizado la lectura del ADC con la función `analogRead` de Arduino. El código únicamente llama de forma periódica a esta función y calcula cuantos milivoltios equivalen la lectura del adc. Para este caso el ADC estaba configurado en 9 bit, de forma que si lee 1023 la tensión en el pin será de 3V3.
 
-<div align="center"> <video src="docs/vid/estructura_codigo.mp4" width="75%" controls></video> </div>
+<div align="center"> <video src="docs/vid/ADC_READ.mp4" width="75%" controls></video> </div>
 
 Se muestra en el video cómo al mover el potenciómetro se actualiza en el terminal la tensión leída.
 
