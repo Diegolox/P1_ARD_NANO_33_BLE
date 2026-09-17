@@ -3,19 +3,23 @@
 
 #include <Arduino.h>
 
-void initI2C();
+// inicialización
+void initI2C(); // master
+void initI2C(uint8_t direccion); // slave
 
+// funciones maestro
 bool escribirI2C(uint8_t direccion, uint8_t dato);
-
 bool escribirI2C(uint8_t direccion, const char* texto);
+int leerEsclavoI2C(uint8_t direccion);
 
-int leerI2C(uint8_t direccion);
+// funciones esclavo
+
 
 #endif
 
 
 /*
-    --- EJEMPLOS ---
+    --- EJEMPLOS MASTER ---
 
     // Enviar un byte
     escribirI2C(0x08, static_cast<uint8_t>('A'));
