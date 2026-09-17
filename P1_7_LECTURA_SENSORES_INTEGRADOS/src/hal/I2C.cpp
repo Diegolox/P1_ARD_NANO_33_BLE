@@ -3,35 +3,33 @@
 
 void initI2C()
 {
-    // Sin dirección: el Nano funciona como maestro
+    // Sin dirección, el Nano funciona como maestro
     Wire.begin();
 }
 
 bool escribirI2C(uint8_t direccion, uint8_t dato)
 {
-    // Comienza la comunicación con el esclavo
     Wire.beginTransmission(direccion);
-
-    // Envía un byte
     Wire.write(dato);
 
-    // Finaliza la comunicación y comprueba errores
-    uint8_t error = Wire.endTransmission();
+    return Wire.endTransmission() == 0;
+}
 
-    return error == 0;
+bool escribirI2C(uint8_t direccion, const char* texto)
+{
+    Wire.beginTransmission(direccion);
+    Wire.print(texto);
+
+    return Wire.endTransmission() == 0;
 }
 
 int leerI2C(uint8_t direccion)
 {
-    // Solicita un byte al esclavo
-    Wire.requestFrom(direccion, (uint8_t)1);
-
-    // Comprueba si el byte ha llegado
-    if (Wire.available())
+    // Solicita un byte y comprueba si ha llegado
+    if (Wire.requestFrom(direccion, 1) > 0)
     {
         return Wire.read();
     }
 
-    // Indica que ha ocurrido un error
     return -1;
 }

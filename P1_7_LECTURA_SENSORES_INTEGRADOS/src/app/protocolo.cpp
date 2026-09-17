@@ -40,7 +40,3 @@ void procesarComandoSerial()
 
 }
 
-
-void enviarMensajeI2C(){
-
-}

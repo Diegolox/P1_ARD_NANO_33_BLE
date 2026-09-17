@@ -15,5 +15,6 @@
 
 #define BAUDRATE 115200
 
+#define ESP_SLAVE 0x08
 
 #endif
