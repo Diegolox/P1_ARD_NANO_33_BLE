@@ -8,6 +8,14 @@ struct Vector3D
     float z;
 };
 
+struct IMU
+{
+    float ax, ay, az;
+    float gx, gy, gz;
+    float mx, my, mz;
+
+};
+
 bool initIMU();
 
 bool leerAcelerometro(Vector3D &aceleracion);

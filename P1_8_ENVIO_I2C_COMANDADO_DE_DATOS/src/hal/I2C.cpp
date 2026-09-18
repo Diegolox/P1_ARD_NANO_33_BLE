@@ -45,3 +45,4 @@ int leerEsclavoI2C(uint8_t direccion){
 }
 
 //----------ESCLAVO----------
+
