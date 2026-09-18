@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "app/telemetria.h"
 #include "hal/uart.h"
 #include "hal/adc.h"
 #include "hal/pwm.h"
@@ -41,10 +42,28 @@ void procesarComandoSerial()
 
 }
 
-void procesarComandoI2C_IMU(){
+void procesarComandoI2C_IMU() {
+
     String comando = leerComandoI2C();
-    if (comando = "") return;
-    if (comando = "2G")
 
+    // No ha llegado ningún comando
+    if (comando == "") return;
+
+    // El comando debe tener exactamente dos caracteres
+    if (comando.length() != 2) return;
+
+    // Extraer los caracteres
+    char numero = comando[0];
+    char dato = comando[1];
+
+    // Comprobar que el registro está entre '0' y '4'
+    if (numero < '0' || numero > '4') return;
+
+    // Comprobar el tipo de dato solicitado
+    if (dato != 'A' && dato != 'G' && dato != 'M') return;
+
+    // Convertir el carácter, por ejemplo '2', en el número 2
+    int numRegistro = numero - '0';
+
+    sendTelemetria(numRegistro, dato);
 }
-

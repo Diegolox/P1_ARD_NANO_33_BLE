@@ -30,23 +30,21 @@ void sendTelemetria(int numRegistro, char dato){
   // crea el buffer char que recopila del array de struct los datos
   char buffer[120];
   
-  if(dato = 'A'){ // coge aceleracion
+  if(dato == 'A'){ // coge aceleracion
     snprintf(buffer, sizeof(buffer), "A:%.2f,%.2f,%.2f", bufferIMU[numRegistro].ax, bufferIMU[numRegistro].ay, bufferIMU[numRegistro].az);
   }
 
-  else if(dato = 'G'){ // coge giroscopo
+  else if(dato == 'G'){ // coge giroscopo
     snprintf(buffer, sizeof(buffer), "G:%.2f,%.2f,%.2f", bufferIMU[numRegistro].gx, bufferIMU[numRegistro].gy, bufferIMU[numRegistro].gz);
   }
 
-  else if(dato = 'M'){ // coge magnetometro
+  else if(dato == 'M'){ // coge magnetometro
     snprintf(buffer, sizeof(buffer), "M:%.2f,%.2f,%.2f", bufferIMU[numRegistro].mx, bufferIMU[numRegistro].my, bufferIMU[numRegistro].mz);
   }
   else return;
 
   responderMasterI2C(buffer);  
 }
-
-
 
 void guardarMuestraIMU(int numRegistro) {
 
