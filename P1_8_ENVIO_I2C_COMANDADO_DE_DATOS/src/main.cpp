@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <Arduino_LSM9DS1.h>
 #include <app/telemetria.h>
+#include <app/protocolo.h>
 #include <bsp/IMU.h>
 #include <hal/I2C.h>
 

@@ -3,6 +3,7 @@
 
 
 void procesarComandoSerial();
+void procesarComandoI2C_IMU();
 
 
 #endif
