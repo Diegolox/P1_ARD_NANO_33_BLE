@@ -3,16 +3,8 @@
 
 void printIMU();
 
-void senIMU_I2C(uint8_t direccion);
+void sendTelemetria(int numRegistro, char dato);
 
-void sendMag_I2C(uint8_t direccion);
-
-void sendGir_I2C(uint8_t direccion);
-
-void sendAce_I2C(uint8_t direccion);
-
-void guardarPaqueteIMU();
-
-void enviarPaqueteIMU(uint8_t direccion);
+void guardarMuestraIMU(int numRegistro);
 
 #endif

@@ -1,7 +1,8 @@
-#include "hal/i2c.h"
 #include <Wire.h>
+#include "hal/i2c.h"
 
-volatile char datoRecibidoI2C = '\0';
+volatile bool datoDisponible = 0;
+char BufferI2C[10];
 
 
 //----------INICIALIZACION----------
@@ -14,6 +15,8 @@ void initI2C(){
 void initI2C(uint8_t direccion){
 
     Wire.begin(direccion);
+    Wire.onReceive(recibirI2C); // se ejecuta cuando llega un mensaje por I2C
+
 }
 
 //----------MAESTRO----------
@@ -45,4 +48,18 @@ int leerEsclavoI2C(uint8_t direccion){
 }
 
 //----------ESCLAVO----------
+void recibirI2C(){ // funcion que se ejecuta al recibir algo por I2C
+    
+
+}
+
+
+String leerComandoI2C(){
+
+
+}
+
+void responderMasterI2C(const char* buffer) {
+    Wire.write(buffer);
+}
 

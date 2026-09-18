@@ -13,6 +13,9 @@ bool escribirI2C(uint8_t direccion, const char* texto);
 int leerEsclavoI2C(uint8_t direccion);
 
 // funciones esclavo
+void recibirI2C();
+void responderMasterI2C(const char* buffer);
+String leerComandoI2C();
 
 
 #endif

@@ -4,6 +4,7 @@
 #include <bsp/IMU.h>
 #include <hal/I2C.h>
 
+volatile uint8_t muestraSolicitada = 0; // muestra solicitada por el master
 
 void setup(){
 
@@ -14,7 +15,7 @@ void setup(){
 void loop(){
 
 // si leo un comando de lectura, L por ejemplo, empiezo rutina, si no, sigo con lo mío
-  
+
 
 
 }
