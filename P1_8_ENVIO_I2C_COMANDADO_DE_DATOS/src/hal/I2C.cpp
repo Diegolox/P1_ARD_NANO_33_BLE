@@ -1,7 +1,7 @@
 #include <Wire.h>
 #include "hal/i2c.h"
 
-volatile bool datoDisponible = 0;
+volatile bool comandoDisponible = 0;
 char BufferI2C[10];
 
 
@@ -48,15 +48,26 @@ int leerEsclavoI2C(uint8_t direccion){
 }
 
 //----------ESCLAVO----------
-void recibirI2C(){ // funcion que se ejecuta al recibir algo por I2C
-    
+void recibirI2C(int numeroBytes){ // funcion que se ejecuta al recibir algo por I2C y mediante puntero indica el número de bytes recibidos
+    if (numeroBytes == 2 && Wire.available() >= 2) {
+        BufferI2C[0] = Wire.read();  // Número del registro
+        BufferI2C[1] = Wire.read();  // A, G o M
+        BufferI2C[2] = '\0';         // Final de cadena
 
+        comandoDisponible = true;
+    }
 }
 
 
 String leerComandoI2C(){
+    if (!comandoDisponible) {
+        return "";
+    }
 
+    String comando = BufferI2C;
+    comandoDisponible = false;
 
+    return comando;
 }
 
 void responderMasterI2C(const char* buffer) {

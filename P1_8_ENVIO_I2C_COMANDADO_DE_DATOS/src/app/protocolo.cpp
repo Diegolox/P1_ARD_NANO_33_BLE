@@ -3,6 +3,7 @@
 #include "hal/adc.h"
 #include "hal/pwm.h"
 #include "hal/timer.h"
+#include "hal/I2C.h"
 
 void procesarComandoSerial()
 {
@@ -37,6 +38,13 @@ void procesarComandoSerial()
         snprintf(buffer, sizeof(buffer), "El dutty de la PWM es: %d", dutty);
         Serial.println(buffer);
     }
+
+}
+
+void procesarComandoI2C_IMU(){
+    String comando = leerComandoI2C();
+    if (comando = "") return;
+    if (comando = "2G")
 
 }
 
