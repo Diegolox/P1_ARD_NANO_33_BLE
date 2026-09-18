@@ -15,8 +15,8 @@ void setup(){
 
 void loop(){
 
-// si leo un comando de lectura, L por ejemplo, empiezo rutina, si no, sigo con lo mío
-procesarComandoI2C_IMU();
-
+  // si leo un comando de lectura, L por ejemplo, empiezo rutina, si no, sigo con lo mío
+  procesarComandoI2C_IMU();
+  delay(10);
 
 }
