@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/64fd90c6-5b77-41a2-89e9-29abb89e6d79
+
 # P1_LAB
 
 ### ESTRUCTURA Y ORGANIZACIÓN DEL CÓDIGO
@@ -18,11 +22,6 @@ Esta organización permite obtener un código más comprensible, mantenible y es
 
 ### LECTURA DEL ADC
 Se ha realizado la lectura del ADC con la función `analogRead` de Arduino. El código únicamente llama de forma periódica a esta función y calcula cuantos milivoltios equivalen la lectura del adc. Para este caso el ADC estaba configurado en 9 bit, de forma que si lee 1023 la tensión en el pin será de 3V3.
-
-
-
-
-
 
 
 <p align="center">
