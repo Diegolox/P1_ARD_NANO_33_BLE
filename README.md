@@ -22,7 +22,7 @@ Se ha realizado la lectura del ADC con la función `analogRead` de Arduino. El c
 
 <p align="center">
   <video
-    src="https://github.com/user-attachments/assets/f342f998-d296-4981-8266-427102643efc"
+    src="https://github.com/user-attachments/assets/d07e0084-7f8a-44c5-af02-4f2258ff20a5"
     controls
     width="75%">
   </video>
@@ -41,7 +41,7 @@ Se muestra en el video cómo al mover el potenciómetro se actualiza en el termi
 
 <p align="center">
   <video
-    src="https://github.com/user-attachments/assets/38299fba-bf71-4ee8-a97a-18fc27a6de23"
+    src="https://github.com/user-attachments/assets/13743aaa-ca0e-4a39-b493-f57b68db2a70"
     controls
     width="75%">
   </video>
