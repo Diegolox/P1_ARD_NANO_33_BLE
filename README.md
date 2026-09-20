@@ -1,7 +1,3 @@
-
-
-https://github.com/user-attachments/assets/64fd90c6-5b77-41a2-89e9-29abb89e6d79
-
 # P1_LAB
 
 ### ESTRUCTURA Y ORGANIZACIÓN DEL CÓDIGO
@@ -36,4 +32,24 @@ Se muestra en el video cómo al mover el potenciómetro se actualiza en el termi
 
 ### TEMPORIZADOR HARDWARE
 
+
+
+
+
 ### SALIDA PWM A PARTIR DEL ADC
+
+
+<p align="center">
+  <video
+    src="https://github.com/user-attachments/assets/38299fba-bf71-4ee8-a97a-18fc27a6de23"
+    controls
+    width="75%">
+  </video>
+</p>
+
+
+
+
+
+
+
