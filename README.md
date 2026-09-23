@@ -54,7 +54,7 @@ Pedir y recibir datos por I2C
 
 <p align="center">
   <video
-    src="https://github.com/user-attachments/assets/63902358-c0b1-4a28-ab18-0b2a28fe5557"
+    src="https://github.com/user-attachments/assets/cbc16a45-6fe7-4a79-ac77-4c4dc90c3891"
     controls
     width="75%">
   </video>
