@@ -5,18 +5,21 @@
 #include <bsp/IMU.h>
 #include <hal/I2C.h>
 
-volatile uint8_t muestraSolicitada = 0; // muestra solicitada por el master
+uint8_t numeroMuestras = 0;
+unsigned long proximaMuestra;
 
-void setup(){
-
-  initI2C(0x33);
-  initIMU();
+void setup() {
+    initIMU();
+    initI2C(0x33);              // Nano como esclavo
+    proximaMuestra = millis() + 200;
 }
 
-void loop(){
+void loop() {
+    if (numeroMuestras < 5 && millis() >= proximaMuestra) {
+        guardarMuestraIMU(numeroMuestras);
+        numeroMuestras++;
+        proximaMuestra += 200;
+    }
 
-  // si leo un comando de lectura, L por ejemplo, empiezo rutina, si no, sigo con lo mío
-  procesarComandoI2C_IMU();
-  delay(10);
-
+    procesarComandoI2C_IMU();
 }
