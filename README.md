@@ -79,6 +79,21 @@
 
 <p align="justify" style="text-align: justify;">Las cinco muestras se capturan <strong>una sola vez al inicio</strong>, no en un búfer que se actualice continuamente. Si se consulta antes de terminar la captura, pueden recibirse muestras aún no tomadas. Las funciones de lectura de la IMU devuelven si había datos disponibles, pero la aplicación actual no comprueba ese resultado al guardarlos.</p>
 
+### Estructura del código de la última práctica
+
+<p align="justify" style="text-align: justify;">Esta práctica se divide en dos proyectos de PlatformIO: uno para el <strong>Nano 33 BLE, que actúa como esclavo I²C</strong>, y otro para el <strong>ESP32, que actúa como maestro</strong>. En el Nano, el código separa la lectura del sensor, la lógica de la aplicación y la comunicación:</p>
+
+| Archivo del Nano | Responsabilidad |
+| --- | --- |
+| `src/main.cpp` | Inicializa la IMU y el I²C en `0x33`. En el bucle guarda hasta cinco muestras, separadas 200 ms, y procesa las peticiones recibidas. |
+| `src/bsp/IMU.cpp` | Accede al acelerómetro, giróscopo y magnetómetro mediante `Arduino_LSM9DS1`. |
+| `src/app/telemetria.cpp` | Guarda las lecturas en `bufferIMU[5]` y prepara como texto los tres ejes solicitados. |
+| `src/app/protocolo.cpp` | Comprueba que el comando tenga un índice de `0` a `4` y una letra `A`, `G` o `M`. |
+| `src/hal/I2C.cpp` | Registra las funciones de recepción y respuesta de `Wire`, conserva el comando recibido y envía la respuesta preparada. |
+| `include/` | Declara las funciones y las estructuras de datos usadas por los módulos. |
+
+<p align="justify" style="text-align: justify;">El proyecto del ESP32 concentra su lógica en <code>src/main.cpp</code>: lee el comando por el puerto serie, lo valida, lo envía al Nano por I²C y solicita la respuesta. Así, la secuencia completa es <strong>comando por Serial → ESP32 maestro → Nano esclavo → selección de la muestra → respuesta por I²C → impresión por Serial</strong>.</p>
+
 **[Vídeo: petición de datos por I²C](docs/vid/PIDO_DATOS_I2C.mp4)**
 
 
