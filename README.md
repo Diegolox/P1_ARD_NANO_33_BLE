@@ -80,3 +80,12 @@
 <p align="justify" style="text-align: justify;">Las cinco muestras se capturan <strong>una sola vez al inicio</strong>, no en un búfer que se actualice continuamente. Si se consulta antes de terminar la captura, pueden recibirse muestras aún no tomadas. Las funciones de lectura de la IMU devuelven si había datos disponibles, pero la aplicación actual no comprueba ese resultado al guardarlos.</p>
 
 **[Vídeo: petición de datos por I²C](docs/vid/PIDO_DATOS_I2C.mp4)**
+
+
+<p align="center">
+  <video
+    src="https://github.com/user-attachments/assets/82f86e33-2795-400e-b5cd-e256bfe9941e"
+    controls
+    width="75%">
+  </video>
+</p>
