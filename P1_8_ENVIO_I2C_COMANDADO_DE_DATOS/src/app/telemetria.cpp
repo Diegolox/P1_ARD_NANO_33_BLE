@@ -28,8 +28,8 @@ void printIMU(){ // mandar por uart
 
 void sendTelemetria(int numRegistro, char dato){
   // crea el buffer char que recopila del array de struct los datos
-  char buffer[120];
-  
+  char buffer[32];
+
   if(dato == 'A'){ // coge aceleracion
     snprintf(buffer, sizeof(buffer), "A:%.2f,%.2f,%.2f", bufferIMU[numRegistro].ax, bufferIMU[numRegistro].ay, bufferIMU[numRegistro].az);
   }
@@ -43,7 +43,7 @@ void sendTelemetria(int numRegistro, char dato){
   }
   else return;
 
-  responderMasterI2C(buffer);  
+  prepararRespuestaI2C(buffer);
 }
 
 void guardarMuestraIMU(int numRegistro) {

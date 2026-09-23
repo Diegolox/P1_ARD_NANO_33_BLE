@@ -3,6 +3,7 @@
 
 volatile bool comandoDisponible = 0;
 char BufferI2C[10];
+char respuestaI2C[32] = "ESPERA";
 
 
 //----------INICIALIZACION----------
@@ -15,6 +16,7 @@ void initI2C(){
 void initI2C(uint8_t direccion){
 
     Wire.begin(direccion);
+    Wire.onRequest(enviarRespuestaI2C);
     Wire.onReceive(recibirI2C); // se ejecuta cuando llega un mensaje por I2C
 
 }
@@ -70,7 +72,15 @@ String leerComandoI2C(){
     return comando;
 }
 
-void responderMasterI2C(const char* buffer) {
-    Wire.write(buffer);
+void prepararRespuestaI2C(const char* texto) {
+    char copia[32] = {};
+    strncpy(copia, texto, sizeof(copia) - 1);
+
+    noInterrupts();
+    memcpy(respuestaI2C, copia, sizeof(copia));
+    interrupts();
 }
 
+void enviarRespuestaI2C() {
+    Wire.write((const uint8_t*)respuestaI2C, sizeof(respuestaI2C));
+}

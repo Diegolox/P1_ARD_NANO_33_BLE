@@ -16,6 +16,7 @@ int leerEsclavoI2C(uint8_t direccion);
 void recibirI2C(int numeroBytes);
 void responderMasterI2C(const char* buffer);
 String leerComandoI2C();
+void prepararRespuestaI2C(const char* texto);
 
 #endif
 
