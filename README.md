@@ -83,10 +83,10 @@
 
 <p align="justify" style="text-align: justify;">La práctica <code>P1_8</code> separa los papeles de las placas:</p>
 
-| Placa y carpeta | Función |
-| --- | --- |
-| Nano, [`P1_8_ENVIO_I2C_COMANDADO_DE_DATOS`](P1_8_ENVIO_I2C_COMANDADO_DE_DATOS/) | Esclavo I²C `0x33`. Guarda cinco muestras de aceleración, giro y campo magnético, una cada 200 ms después de arrancar. |
-| ESP32, [`P1_8_ENVIO_COMANDO_ESP_MASTER`](P1_8_ENVIO_COMANDO_ESP_MASTER/) | Maestro I²C. Lee un comando escrito por `Serial`, lo envía al Nano y solicita su respuesta. Utiliza GPIO 21/22 para SDA/SCL y GPIO 2 para el LED. |
+| Placa | Carpeta | Función |
+| --- | --- | --- |
+| Nano | [`P1_8_ENVIO_I2C_COMANDADO_DE_DATOS`](P1_8_ENVIO_I2C_COMANDADO_DE_DATOS/) | Esclavo I²C `0x33`. Guarda cinco muestras de aceleración, giro y campo magnético, una cada 200 ms después de arrancar. |
+| ESP32 | [`P1_8_ENVIO_COMANDO_ESP_MASTER`](P1_8_ENVIO_COMANDO_ESP_MASTER/) | Maestro I²C. Lee un comando escrito por `Serial`, lo envía al Nano y solicita su respuesta. Utiliza GPIO 21/22 para SDA/SCL y GPIO 2 para el LED. |
 
 <p align="justify" style="text-align: justify;">El comando tiene <strong>dos caracteres</strong>: índice <code>0–4</code> seguido de <code>A</code> (acelerómetro), <code>G</code> (giróscopo) o <code>M</code> (magnetómetro). Por ejemplo, <code>2G</code> pide los tres ejes del giróscopo de la muestra 2. El Nano prepara una respuesta de texto como <code>G:0.12,0.34,0.56</code>; el ESP32 la imprime y enciende su LED durante un segundo. El maestro espera 10 ms entre el envío del comando y la solicitud de lectura.</p>
 
