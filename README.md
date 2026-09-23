@@ -31,7 +31,7 @@
 
 <p align="justify" style="text-align: justify;">Las carpetas son <strong>ejercicios sucesivos</strong>, por lo que algunas conservan módulos de prácticas anteriores aunque su <code>main.cpp</code> ya no los utilice. La descripción de la tabla se refiere al programa que se ejecuta en cada carpeta.</p>
 
-## ADC, temporizador y PWM
+## ADC, TIMER y PWM
 
 <p align="justify" style="text-align: justify;">En <code>P1_2</code> se lee el pin <code>A0</code> y se calcula la tensión con <code>lectura * 3300 / 1023</code>, tomando 3,3 V como referencia. El valor aparece en milivoltios en el monitor serie.</p>
 
