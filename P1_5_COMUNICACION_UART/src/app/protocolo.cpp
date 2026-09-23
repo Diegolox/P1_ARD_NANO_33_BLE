@@ -23,7 +23,11 @@ void procesarComando()
 
     if (mensaje.startsWith("ADC(") && mensaje.endsWith(")")){ //devuelve cada x segundos lectura ADC
         int periodo = mensaje.substring(4, mensaje.length() - 1).toInt();
-        setTimer(periodo * 1000000UL); // convierte de segundos a microsegundos
+        if (periodo == 0) {
+            stopTimer();
+        } else if (periodo > 0) {
+            setTimer(periodo * 1000000UL); // Convierte a microsegundos
+        }
     }
 
     if (mensaje.startsWith("PWM(") && mensaje.endsWith(")")){
