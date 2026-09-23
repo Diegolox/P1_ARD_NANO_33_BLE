@@ -107,7 +107,7 @@
 
 <p align="justify" style="text-align: justify;">El proyecto del ESP32 concentra su lógica en <code>src/main.cpp</code>: lee el comando por el puerto serie, lo valida, lo envía al Nano por I²C y solicita la respuesta.
 
-  Así, la secuencia completa es <strong>comando por Serial → ESP32 maestro → Nano esclavo → selección de la muestra → respuesta por I²C → impresión por Serial</strong>.</p>
+  Así, la secuencia completa es <strong>ESP32 recibe comando por uart → Enviar comando si es correcto por I2C  → Nano esclavo lo recibe → selecciona la muestra solicitada → envía respuesta por I²C → ESP32 recibe y lo muestra por Serial</strong>.</p>
 
 <p align="center">
   <video
