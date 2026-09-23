@@ -1,6 +1,6 @@
 # P1_LAB — Arduino Nano 33 BLE
 
-Prácticas de microcontroladores realizadas con **PlatformIO** y el **Arduino Nano 33 BLE**. Cada carpeta `P1_x_...` es un proyecto independiente: desde el parpadeo de un LED y la lectura del ADC hasta la comunicación entre un Nano y un ESP32 para consultar muestras de la IMU.
+<p align="justify" style="text-align: justify;">Prácticas de microcontroladores realizadas con <strong>PlatformIO</strong> y el <strong>Arduino Nano 33 BLE</strong>. Cada carpeta <code>P1_x_...</code> es un proyecto independiente: desde el parpadeo de un LED y la lectura del ADC hasta la comunicación entre un Nano y un ESP32 para consultar muestras de la IMU.</p>
 
 ## Proyectos
 
@@ -17,9 +17,11 @@ Prácticas de microcontroladores realizadas con **PlatformIO** y el **Arduino Na
 
 ## Estructura y organización del código
 
-Tras las primeras pruebas, el código se separó en archivos de cabecera dentro de `include/` e implementaciones dentro de `src/`. En `P1_3` los módulos ADC y temporizador todavía están en `lib/`; a partir de `P1_4` se usa la estructura por capas:
+<p align="justify" style="text-align: justify;">Tras las primeras pruebas, el código se separó en archivos de cabecera dentro de <code>include/</code> e implementaciones dentro de <code>src/</code>. En <code>P1_3</code> los módulos ADC y temporizador todavía están en <code>lib/</code>; a partir de <code>P1_4</code> se usa la estructura por capas:</p>
 
-<img src="docs/img/ESQUEMA_FICHEROS.svg" alt="Esquema de la organización de archivos del proyecto" width="800">
+<p align="center" style="text-align: center;">
+  <img src="docs/img/ESQUEMA_FICHEROS.svg" alt="Esquema de la organización de archivos del proyecto" width="800">
+</p>
 
 - `hal/`: acceso a ADC, PWM, temporizador y comunicaciones UART/I²C.
 - `bsp/`: adaptación de la IMU integrada, presente en las prácticas con sensores.
@@ -27,23 +29,23 @@ Tras las primeras pruebas, el código se separó en archivos de cabecera dentro 
 - `config.h`: pines y constantes usadas por cada proyecto.
 - `main.cpp`: inicialización y ciclo principal de la práctica correspondiente.
 
-Las carpetas son **ejercicios sucesivos**, por lo que algunas conservan módulos de prácticas anteriores aunque su `main.cpp` ya no los utilice. La descripción de la tabla se refiere al programa que se ejecuta en cada carpeta.
+<p align="justify" style="text-align: justify;">Las carpetas son <strong>ejercicios sucesivos</strong>, por lo que algunas conservan módulos de prácticas anteriores aunque su <code>main.cpp</code> ya no los utilice. La descripción de la tabla se refiere al programa que se ejecuta en cada carpeta.</p>
 
 ## ADC, temporizador y PWM
 
-En `P1_2` se lee el pin `A0` y se calcula la tensión con `lectura * 3300 / 1023`, tomando 3,3 V como referencia. El valor aparece en milivoltios en el monitor serie.
+<p align="justify" style="text-align: justify;">En <code>P1_2</code> se lee el pin <code>A0</code> y se calcula la tensión con <code>lectura * 3300 / 1023</code>, tomando 3,3 V como referencia. El valor aparece en milivoltios en el monitor serie.</p>
 
 **[Vídeo: lectura del ADC](docs/vid/ADC_READ.mp4)**
 
-En `P1_3` se configura `TIMER3` del nRF52840 con un contador de 1 MHz. La rutina de interrupción activa una bandera y el `loop()` realiza la lectura del ADC cuando detecta esa bandera. Así se evita imprimir por `Serial` dentro de la interrupción.
+<p align="justify" style="text-align: justify;">En <code>P1_3</code> se configura <code>TIMER3</code> del nRF52840 con un contador de 1 MHz. La rutina de interrupción activa una bandera y el <code>loop()</code> realiza la lectura del ADC cuando detecta esa bandera. Así se evita imprimir por <code>Serial</code> dentro de la interrupción.</p>
 
-En `P1_4` el ADC se configura a 12 bits (`0–4095`) y se escala a un duty de `0–255`. La salida PWM de `A1` se genera con `mbed::PwmOut` a **7 kHz**; el temporizador actualiza el duty una vez por segundo.
+<p align="justify" style="text-align: justify;">En <code>P1_4</code> el ADC se configura a 12 bits (<code>0–4095</code>) y se escala a un duty de <code>0–255</code>. La salida PWM de <code>A1</code> se genera con <code>mbed::PwmOut</code> a <strong>7 kHz</strong>; el temporizador actualiza el duty una vez por segundo.</p>
 
 **[Vídeo: PWM controlada desde el ADC](docs/vid/ADC_to_PWM.mp4)**
 
 ## Comandos por Serial
 
-En `P1_5_COMUNICACION_UART`, el Nano recibe líneas terminadas en salto de línea a **115200 baudios**. El programa reconoce:
+<p align="justify" style="text-align: justify;">En <code>P1_5_COMUNICACION_UART</code>, el Nano recibe líneas terminadas en salto de línea a <strong>115200 baudios</strong>. El programa reconoce:</p>
 
 | Comando | Acción |
 | --- | --- |
@@ -52,28 +54,30 @@ En `P1_5_COMUNICACION_UART`, el Nano recibe líneas terminadas en salto de líne
 | `PWM(x)` | Ajusta el duty de `A1`, con `x` entre `0` y `9` (`0` = 0 %, `9` = 100 %). |
 | `STOP` | Detiene el temporizador y fija la PWM a cero. |
 
-Para detener el envío periódico hay que usar `STOP` o `ADC`: en el código actual, `ADC(0)` **no** llama a `stopTimer()`.
+<p align="justify" style="text-align: justify;">Para detener el envío periódico hay que usar <code>STOP</code> o <code>ADC</code>: en el código actual, <code>ADC(0)</code> <strong>no</strong> llama a <code>stopTimer()</code>.</p>
 
 ## I²C: Nano maestro y ESP32 esclavo
 
-En la primera prueba I²C, el Nano envía alternativamente los bytes `0` y `1` cada 500 ms a la dirección **`0x08`**. El ESP32 recibe el byte con `Wire.onReceive()` y apaga o enciende su LED. En el ESP32 se usan **SDA = GPIO 21** y **SCL = GPIO 22**. Ambas placas deben compartir masa y las señales I²C deben trabajar a 3,3 V.
+<p align="justify" style="text-align: justify;">En la primera prueba I²C, el Nano envía alternativamente los bytes <code>0</code> y <code>1</code> cada 500 ms a la dirección <strong><code>0x08</code></strong>. El ESP32 recibe el byte con <code>Wire.onReceive()</code> y apaga o enciende su LED. En el ESP32 se usan <strong>SDA = GPIO 21</strong> y <strong>SCL = GPIO 22</strong>. Ambas placas deben compartir masa y las señales I²C deben trabajar a 3,3 V.</p>
 
-<img src="docs/img/FOTO_COMUNICACION_I2C_ESP_y_ARD.png" alt="Conexión I²C entre el ESP32 y el Arduino Nano 33 BLE" width="650">
+<p align="center" style="text-align: center;">
+  <img src="docs/img/FOTO_COMUNICACION_I2C_ESP_y_ARD.png" alt="Conexión I²C entre el ESP32 y el Arduino Nano 33 BLE" width="650">
+</p>
 
 ## Lectura y consulta de la IMU
 
-`P1_7` incorpora un módulo `bsp/IMU` para leer los tres ejes del acelerómetro, giróscopo y magnetómetro con `Arduino_LSM9DS1`. Su `loop()` llama a `printIMU()` una vez por segundo. **En esta versión falta inicializar `Serial` en `setup()`**, por lo que la impresión no queda preparada para verse de forma fiable en el monitor hasta añadir `Serial.begin(...)`.
+<p align="justify" style="text-align: justify;"><code>P1_7</code> incorpora un módulo <code>bsp/IMU</code> para leer los tres ejes del acelerómetro, giróscopo y magnetómetro con <code>Arduino_LSM9DS1</code>. Su <code>loop()</code> llama a <code>printIMU()</code> una vez por segundo. <strong>En esta versión falta inicializar <code>Serial</code> en <code>setup()</code></strong>, por lo que la impresión no queda preparada para verse de forma fiable en el monitor hasta añadir <code>Serial.begin(...)</code>.</p>
 
-La práctica `P1_8` separa los papeles de las placas:
+<p align="justify" style="text-align: justify;">La práctica <code>P1_8</code> separa los papeles de las placas:</p>
 
 | Placa y carpeta | Función |
 | --- | --- |
 | Nano, [`P1_8_ENVIO_I2C_COMANDADO_DE_DATOS`](P1_8_ENVIO_I2C_COMANDADO_DE_DATOS/) | Esclavo I²C `0x33`. Guarda cinco muestras de aceleración, giro y campo magnético, una cada 200 ms después de arrancar. |
 | ESP32, [`P1_8_ENVIO_COMANDO_ESP_MASTER`](P1_8_ENVIO_COMANDO_ESP_MASTER/) | Maestro I²C. Lee un comando escrito por `Serial`, lo envía al Nano y solicita su respuesta. Utiliza GPIO 21/22 para SDA/SCL y GPIO 2 para el LED. |
 
-El comando tiene **dos caracteres**: índice `0–4` seguido de `A` (acelerómetro), `G` (giróscopo) o `M` (magnetómetro). Por ejemplo, `2G` pide los tres ejes del giróscopo de la muestra 2. El Nano prepara una respuesta de texto como `G:0.12,0.34,0.56`; el ESP32 la imprime y enciende su LED durante un segundo. El maestro espera 10 ms entre el envío del comando y la solicitud de lectura.
+<p align="justify" style="text-align: justify;">El comando tiene <strong>dos caracteres</strong>: índice <code>0–4</code> seguido de <code>A</code> (acelerómetro), <code>G</code> (giróscopo) o <code>M</code> (magnetómetro). Por ejemplo, <code>2G</code> pide los tres ejes del giróscopo de la muestra 2. El Nano prepara una respuesta de texto como <code>G:0.12,0.34,0.56</code>; el ESP32 la imprime y enciende su LED durante un segundo. El maestro espera 10 ms entre el envío del comando y la solicitud de lectura.</p>
 
-Las cinco muestras se capturan **una sola vez al inicio**, no en un búfer que se actualice continuamente. Si se consulta antes de terminar la captura, pueden recibirse muestras aún no tomadas. Las funciones de lectura de la IMU devuelven si había datos disponibles, pero la aplicación actual no comprueba ese resultado al guardarlos.
+<p align="justify" style="text-align: justify;">Las cinco muestras se capturan <strong>una sola vez al inicio</strong>, no en un búfer que se actualice continuamente. Si se consulta antes de terminar la captura, pueden recibirse muestras aún no tomadas. Las funciones de lectura de la IMU devuelven si había datos disponibles, pero la aplicación actual no comprueba ese resultado al guardarlos.</p>
 
 **[Vídeo: petición de datos por I²C](docs/vid/PIDO_DATOS_I2C.mp4)**
 
