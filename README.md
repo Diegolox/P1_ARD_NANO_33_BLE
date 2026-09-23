@@ -50,11 +50,12 @@
 | Comando | Acción |
 | --- | --- |
 | `ADC` | Detiene el temporizador y envía una lectura actual del ADC. |
-| `ADC(x)` | Configura una lectura periódica cada `x` segundos mediante `TIMER3` (`x` debe ser positivo). |
+| `ADC(x)` | Configura una lectura periódica cada `x` segundos mediante `TIMER3` para valores positivos de `x`. |
+| `ADC(0)` | El enunciado pide que detenga las lecturas periódicas, pero el comportamiento de parada aún no está implementado. |
 | `PWM(x)` | Ajusta el duty de `A1`, con `x` entre `0` y `9` (`0` = 0 %, `9` = 100 %). |
-| `STOP` | Detiene el temporizador y fija la PWM a cero. |
+| `STOP` | Detiene el temporizador y fija la PWM a cero; es el comando que se puede usar ahora para parar las lecturas periódicas. |
 
-<p align="justify" style="text-align: justify;">Para detener el envío periódico hay que usar <code>STOP</code> o <code>ADC</code>: en el código actual, <code>ADC(0)</code> <strong>no</strong> llama a <code>stopTimer()</code>.</p>
+<p align="justify" style="text-align: justify;">En esta versión, <code>ADC(0)</code> pasa el valor cero a <code>setTimer()</code> en lugar de llamar a <code>stopTimer()</code>. Para detener las lecturas se utiliza <code>STOP</code>; <code>ADC</code> también detiene el temporizador antes de enviar una lectura puntual. Para cumplir literalmente el enunciado, queda pendiente añadir el caso <code>ADC(0)</code> al procesamiento del comando.</p>
 
 ## I²C: Nano maestro y ESP32 esclavo
 
