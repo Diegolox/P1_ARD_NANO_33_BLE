@@ -35,13 +35,25 @@
 
 <p align="justify" style="text-align: justify;">En <code>P1_2</code> se lee el pin <code>A0</code> y se calcula la tensión con <code>lectura * 3300 / 1023</code>, tomando 3,3 V como referencia. El valor aparece en milivoltios en el monitor serie.</p>
 
-**[Vídeo: lectura del ADC](docs/vid/ADC_READ.mp4)**
+<p align="center">
+  <video
+    src="https://github.com/user-attachments/assets/83097e00-a1d5-4d11-b4c3-a3bed5a3737b"
+    controls
+    width="75%">
+  </video>
+</p>
 
 <p align="justify" style="text-align: justify;">En <code>P1_3</code> se configura <code>TIMER3</code> del nRF52840 con un contador de 1 MHz. La rutina de interrupción activa una bandera y el <code>loop()</code> realiza la lectura del ADC cuando detecta esa bandera. Así se evita imprimir por <code>Serial</code> dentro de la interrupción.</p>
 
 <p align="justify" style="text-align: justify;">En <code>P1_4</code> el ADC se configura a 12 bits (<code>0–4095</code>) y se escala a un duty de <code>0–255</code>. La salida PWM de <code>A1</code> se genera con <code>mbed::PwmOut</code> a <strong>7 kHz</strong>; el temporizador actualiza el duty una vez por segundo.</p>
 
-**[Vídeo: PWM controlada desde el ADC](docs/vid/ADC_to_PWM.mp4)**
+<p align="center">
+  <video
+    src="https://github.com/user-attachments/assets/aabb2140-8568-4f25-884d-e98c9e398ce4"
+    controls
+    width="75%">
+  </video>
+</p>
 
 ## Comandos por Serial
 
@@ -95,13 +107,12 @@
 
 <p align="justify" style="text-align: justify;">El proyecto del ESP32 concentra su lógica en <code>src/main.cpp</code>: lee el comando por el puerto serie, lo valida, lo envía al Nano por I²C y solicita la respuesta. Así, la secuencia completa es <strong>comando por Serial → ESP32 maestro → Nano esclavo → selección de la muestra → respuesta por I²C → impresión por Serial</strong>.</p>
 
-**[Vídeo: petición de datos por I²C](docs/vid/PIDO_DATOS_I2C.mp4)**
-
-
 <p align="center">
   <video
-    src="https://github.com/user-attachments/assets/82f86e33-2795-400e-b5cd-e256bfe9941e"
+    src="https://github.com/user-attachments/assets/eaad47f3-88ec-4aaa-8d0c-b213cf8abd4d"
     controls
     width="75%">
   </video>
 </p>
+
+
