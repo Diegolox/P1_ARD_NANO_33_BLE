@@ -80,12 +80,3 @@
 <p align="justify" style="text-align: justify;">Las cinco muestras se capturan <strong>una sola vez al inicio</strong>, no en un búfer que se actualice continuamente. Si se consulta antes de terminar la captura, pueden recibirse muestras aún no tomadas. Las funciones de lectura de la IMU devuelven si había datos disponibles, pero la aplicación actual no comprueba ese resultado al guardarlos.</p>
 
 **[Vídeo: petición de datos por I²C](docs/vid/PIDO_DATOS_I2C.mp4)**
-
-## Cómo ejecutar una práctica
-
-1. Abre en VS Code **la carpeta de la práctica concreta**, que contiene su propio `platformio.ini`.
-2. Conecta y selecciona la placa correspondiente: `nano33ble` para el Arduino Nano 33 BLE y `upesy_wroom` para los ejemplos del ESP32.
-3. Compila y carga el proyecto desde PlatformIO. Los proyectos con IMU (`P1_7` y el Nano de `P1_8`) declaran `Arduino_LSM9DS1` en `lib_deps`.
-4. Cuando la práctica use `Serial`, abre el monitor a **115200 baudios**. Para enviar los comandos de `P1_5` o del ESP32 de `P1_8`, escribe el comando y pulsa Enter.
-
-**[Vídeo: primera prueba del LED](docs/vid/BLINK_LED.mp4)**
