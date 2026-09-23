@@ -47,6 +47,12 @@ Se muestra en el video cómo al mover el potenciómetro se actualiza en el termi
   </video>
 </p>
 
+### SALIDA PWM A PARTIR DEL ADC
+Pedir y recibir datos por I2C
+
+https://github.com/user-attachments/assets/63902358-c0b1-4a28-ab18-0b2a28fe5557
+
+
 
 
 
