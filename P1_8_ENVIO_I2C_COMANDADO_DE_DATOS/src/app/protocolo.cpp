@@ -1,3 +1,7 @@
+/**
+ * @file protocolo.cpp
+ * @brief Interpretación de comandos recibidos por Serial y por I2C.
+ */
 #include <Arduino.h>
 #include "app/telemetria.h"
 #include "hal/uart.h"
@@ -6,6 +10,15 @@
 #include "hal/timer.h"
 #include "hal/I2C.h"
 
+/**
+ * @brief Procesa un comando recibido por el puerto serie.
+ * @details Reconoce STOP, ADC, ADC(x) y PWM(x). STOP detiene el temporizador
+ *          y pone la PWM a cero. ADC imprime una lectura y detiene el temporizador.
+ *          ADC(x) inicia un temporizador con x segundos de periodo; PWM(x)
+ *          ajusta el ciclo de trabajo a uno de diez niveles, de 0 a 9.
+ * @note La conversión de x se realiza con String::toInt(); no se valida
+ *       expresamente si el contenido entre paréntesis es numérico.
+ */
 void procesarComandoSerial()
 {
     String mensaje = leerSerial();
@@ -42,6 +55,13 @@ void procesarComandoSerial()
 
 }
 
+/**
+ * @brief Interpreta el último comando I2C dirigido a los registros de la IMU.
+ * @details Acepta dos caracteres: un índice de '0' a '4' seguido de 'A'
+ *          (acelerómetro), 'G' (giroscopio) o 'M' (magnetómetro).
+ *          Si el comando es válido, prepara la respuesta con sendTelemetria().
+ *          Los comandos ausentes o inválidos se descartan sin respuesta nueva.
+ */
 void procesarComandoI2C_IMU() {
 
     String comando = leerComandoI2C();
