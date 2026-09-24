@@ -1,0 +1,91 @@
+\doxysection{include/\+hal/\+pwm.h File Reference}
+\hypertarget{pwm_8h}{}\label{pwm_8h}\index{include/hal/pwm.h@{include/hal/pwm.h}}
+
+
+Declaraciones para configurar y controlar una salida PWM.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{pwm_8h_a3bbee0478076e3daa26f4201c8a74314}{init\+PWM}} (int pin, int frecuencia)
+\begin{DoxyCompactList}\small\item\em Crea la salida PWM en el pin indicado y configura su frecuencia. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{pwm_8h_ab6947125c5b2fb03c6f7d0106708afae}{actualizar\+PWM}} (int duty)
+\begin{DoxyCompactList}\small\item\em Ajusta el ciclo de trabajo de la PWM. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaraciones para configurar y controlar una salida PWM. 
+
+
+
+\label{pwm_8h_doc-func-members}
+\Hypertarget{pwm_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{pwm_8h_ab6947125c5b2fb03c6f7d0106708afae}\index{pwm.h@{pwm.h}!actualizarPWM@{actualizarPWM}}
+\index{actualizarPWM@{actualizarPWM}!pwm.h@{pwm.h}}
+\doxysubsubsection{\texorpdfstring{actualizarPWM()}{actualizarPWM()}}
+{\footnotesize\ttfamily \label{pwm_8h_ab6947125c5b2fb03c6f7d0106708afae} 
+void actualizar\+PWM (\begin{DoxyParamCaption}\item[{int}]{duty}{}\end{DoxyParamCaption})}
+
+
+
+Ajusta el ciclo de trabajo de la PWM. 
+
+Establece el ciclo de trabajo de la salida PWM.
+
+
+\begin{DoxyParams}{Parameters}
+{\em duty} & Valor limitado internamente al intervalo 0 a PWM\+\_\+\+MAX. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+Se debe llamar antes a \doxylink{pwm_8h_a3bbee0478076e3daa26f4201c8a74314}{init\+PWM()}.
+\end{DoxyPrecond}
+Ajusta el ciclo de trabajo de la PWM.
+
+
+\begin{DoxyParams}{Parameters}
+{\em duty} & Valor de ciclo de trabajo; se limita al intervalo 0 a PWM\+\_\+\+MAX. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+La salida PWM debe haberse creado mediante \doxylink{pwm_8h_a3bbee0478076e3daa26f4201c8a74314}{init\+PWM()}. 
+\end{DoxyPrecond}
+\Hypertarget{pwm_8h_a3bbee0478076e3daa26f4201c8a74314}\index{pwm.h@{pwm.h}!initPWM@{initPWM}}
+\index{initPWM@{initPWM}!pwm.h@{pwm.h}}
+\doxysubsubsection{\texorpdfstring{initPWM()}{initPWM()}}
+{\footnotesize\ttfamily \label{pwm_8h_a3bbee0478076e3daa26f4201c8a74314} 
+void init\+PWM (\begin{DoxyParamCaption}\item[{int}]{pin}{, }\item[{int}]{frecuencia}{}\end{DoxyParamCaption})}
+
+
+
+Crea la salida PWM en el pin indicado y configura su frecuencia. 
+
+Crea la salida PWM en un pin y establece su frecuencia.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Pin Arduino utilizado como salida. \\
+\hline
+{\em frecuencia} & Frecuencia deseada en hercios. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+frecuencia debe ser mayor que cero.
+\end{DoxyPrecond}
+Crea la salida PWM en el pin indicado y configura su frecuencia.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Pin Arduino utilizado como salida PWM. \\
+\hline
+{\em frecuencia} & Frecuencia solicitada en hercios. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+frecuencia debe ser mayor que cero. 
+\end{DoxyPrecond}
+\begin{DoxyNote}{Note}
+El periodo se calcula en microsegundos mediante división entera. 
+\end{DoxyNote}

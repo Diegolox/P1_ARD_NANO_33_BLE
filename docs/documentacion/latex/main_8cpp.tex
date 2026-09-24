@@ -1,0 +1,60 @@
+\doxysection{src/\+main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+
+
+Inicialización del Nano como esclavo I2C y captura de cinco muestras \doxylink{struct_i_m_u}{IMU}.  
+
+
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \+\#include $<$Arduino\+\_\+\+LSM9\+DS1.\+h$>$}\newline
+{\ttfamily \+\#include $<$app/\+telemetria.\+h$>$}\newline
+{\ttfamily \+\#include $<$app/\+protocolo.\+h$>$}\newline
+{\ttfamily \+\#include $<$bsp/\+\+IMU.\+h$>$}\newline
+{\ttfamily \+\#include $<$hal/\+\+I2\+C.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa la \doxylink{struct_i_m_u}{IMU} y el esclavo I2C en la dirección 0x33. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\begin{DoxyCompactList}\small\item\em Captura cinco muestras \doxylink{struct_i_m_u}{IMU} y atiende las solicitudes recibidas por I2C. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main_8cpp_aa19b8e221e87b7696c63f789464d0294}\label{main_8cpp_aa19b8e221e87b7696c63f789464d0294} 
+uint8\+\_\+t {\bfseries numero\+Muestras} = 0
+\begin{DoxyCompactList}\small\item\em Número de muestras almacenadas desde el arranque, hasta cinco. \end{DoxyCompactList}\item 
+\Hypertarget{main_8cpp_ac155e1eeee36ee4f34ead307bbe04af7}\label{main_8cpp_ac155e1eeee36ee4f34ead307bbe04af7} 
+unsigned long {\bfseries proxima\+Muestra}
+\begin{DoxyCompactList}\small\item\em Marca de tiempo en milisegundos para la siguiente captura. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Inicialización del Nano como esclavo I2C y captura de cinco muestras \doxylink{struct_i_m_u}{IMU}. 
+
+
+
+\label{main_8cpp_doc-func-members}
+\Hypertarget{main_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_afe461d27b9c48d5921c00d521181f12f}\index{main.cpp@{main.cpp}!loop@{loop}}
+\index{loop@{loop}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily \label{main_8cpp_afe461d27b9c48d5921c00d521181f12f} 
+void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Captura cinco muestras \doxylink{struct_i_m_u}{IMU} y atiende las solicitudes recibidas por I2C. 
+
+Guarda una muestra cada 200 ms hasta completar los cinco registros. Después sigue procesando comandos I2C sin volver a tomar muestras. \Hypertarget{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\index{main.cpp@{main.cpp}!setup@{setup}}
+\index{setup@{setup}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
+void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa la \doxylink{struct_i_m_u}{IMU} y el esclavo I2C en la dirección 0x33. 
+
+Programa la primera captura 200 ms después de la inicialización. 

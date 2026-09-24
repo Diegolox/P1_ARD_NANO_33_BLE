@@ -1,0 +1,96 @@
+\doxysection{include/\+hal/\+timer.h File Reference}
+\hypertarget{timer_8h}{}\label{timer_8h}\index{include/hal/timer.h@{include/hal/timer.h}}
+
+
+Declaraciones para controlar los eventos periódicos de TIMER3.  
+
+
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{timer_8h_a92f988a5bed1410e96ce22717f5bd8ef}{set\+Timer}} (uint32\+\_\+t periodo\+Microsegundos)
+\begin{DoxyCompactList}\small\item\em Configura y arranca TIMER3 con interrupciones periódicas. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{timer_8h_aa6f6bfef028c7b053444cbd48567d286}{stop\+Timer}} ()
+\begin{DoxyCompactList}\small\item\em Detiene TIMER3 y borra la marca de interrupción pendiente. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{timer_8h_ab2f1e9f52c33f380ca417a370a79bb0b}{hay\+Interrupcion\+Timer}} ()
+\begin{DoxyCompactList}\small\item\em Consulta y limpia la marca de interrupción pendiente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaraciones para controlar los eventos periódicos de TIMER3. 
+
+
+
+\label{timer_8h_doc-func-members}
+\Hypertarget{timer_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{timer_8h_ab2f1e9f52c33f380ca417a370a79bb0b}\index{timer.h@{timer.h}!hayInterrupcionTimer@{hayInterrupcionTimer}}
+\index{hayInterrupcionTimer@{hayInterrupcionTimer}!timer.h@{timer.h}}
+\doxysubsubsection{\texorpdfstring{hayInterrupcionTimer()}{hayInterrupcionTimer()}}
+{\footnotesize\ttfamily \label{timer_8h_ab2f1e9f52c33f380ca417a370a79bb0b} 
+bool hay\+Interrupcion\+Timer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Consulta y limpia la marca de interrupción pendiente. 
+
+Consulta y consume la marca de interrupción del TIMER3.
+
+\begin{DoxyReturn}{Returns}
+true si ocurrió al menos una comparación desde la última consulta; false si no ocurrió ninguna. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Varias comparaciones pendientes se representan mediante una sola marca.
+\end{DoxyNote}
+Consulta y limpia la marca de interrupción pendiente.
+
+\begin{DoxyReturn}{Returns}
+true si se produjo al menos una comparación desde la última consulta; false si no hay ninguna pendiente. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Varias comparaciones antes de la consulta se representan con una sola marca. 
+\end{DoxyNote}
+\Hypertarget{timer_8h_a92f988a5bed1410e96ce22717f5bd8ef}\index{timer.h@{timer.h}!setTimer@{setTimer}}
+\index{setTimer@{setTimer}!timer.h@{timer.h}}
+\doxysubsubsection{\texorpdfstring{setTimer()}{setTimer()}}
+{\footnotesize\ttfamily \label{timer_8h_a92f988a5bed1410e96ce22717f5bd8ef} 
+void set\+Timer (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{periodo\+Microsegundos}{}\end{DoxyParamCaption})}
+
+
+
+Configura y arranca TIMER3 con interrupciones periódicas. 
+
+Configura y arranca TIMER3 para generar eventos periódicos.
+
+
+\begin{DoxyParams}{Parameters}
+{\em periodo\+Microsegundos} & Periodo en microsegundos cargado en CC\+[0]. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+TIMER3 trabaja a 1 MHz: un incremento del contador equivale a 1 µs.
+\end{DoxyNote}
+Configura y arranca TIMER3 con interrupciones periódicas.
+
+
+\begin{DoxyParams}{Parameters}
+{\em periodo\+Microsegundos} & Periodo en microsegundos cargado en CC\+[0]. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+El temporizador utiliza una frecuencia de 1 MHz y reinicia el contador automáticamente tras cada comparación con CC\+[0]. 
+\end{DoxyNote}
+\Hypertarget{timer_8h_aa6f6bfef028c7b053444cbd48567d286}\index{timer.h@{timer.h}!stopTimer@{stopTimer}}
+\index{stopTimer@{stopTimer}!timer.h@{timer.h}}
+\doxysubsubsection{\texorpdfstring{stopTimer()}{stopTimer()}}
+{\footnotesize\ttfamily \label{timer_8h_aa6f6bfef028c7b053444cbd48567d286} 
+void stop\+Timer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Detiene TIMER3 y borra la marca de interrupción pendiente. 
+
+Detiene TIMER3, deshabilita su interrupción y borra la marca pendiente.
+
+Detiene TIMER3 y borra la marca de interrupción pendiente. 

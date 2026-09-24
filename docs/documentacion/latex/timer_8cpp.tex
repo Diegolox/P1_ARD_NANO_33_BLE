@@ -1,0 +1,103 @@
+\doxysection{src/\+hal/\+timer.cpp File Reference}
+\hypertarget{timer_8cpp}{}\label{timer_8cpp}\index{src/hal/timer.cpp@{src/hal/timer.cpp}}
+
+
+Configuración del TIMER3 y comunicación de sus eventos al programa.  
+
+
+{\ttfamily \+\#include "{}hal/\+timer.\+h"{}}\newline
+{\ttfamily \+\#include $<$nrf\+\_\+timer.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{timer_8cpp_a92f988a5bed1410e96ce22717f5bd8ef}{set\+Timer}} (uint32\+\_\+t periodo\+Microsegundos)
+\begin{DoxyCompactList}\small\item\em Configura y arranca TIMER3 para generar eventos periódicos. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{timer_8cpp_aa6f6bfef028c7b053444cbd48567d286}{stop\+Timer}} ()
+\begin{DoxyCompactList}\small\item\em Detiene TIMER3, deshabilita su interrupción y borra la marca pendiente. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{timer_8cpp_ab2f1e9f52c33f380ca417a370a79bb0b}{hay\+Interrupcion\+Timer}} ()
+\begin{DoxyCompactList}\small\item\em Consulta y consume la marca de interrupción del TIMER3. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{timer_8cpp_a8614ab59f646a97b53cb336ec101cb52}\label{timer_8cpp_a8614ab59f646a97b53cb336ec101cb52} 
+volatile bool {\bfseries interrupcion\+Timer} = false
+\begin{DoxyCompactList}\small\item\em Señala que TIMER3 ha alcanzado el valor de comparación. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuración del TIMER3 y comunicación de sus eventos al programa. 
+
+
+
+\label{timer_8cpp_doc-func-members}
+\Hypertarget{timer_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{timer_8cpp_ab2f1e9f52c33f380ca417a370a79bb0b}\index{timer.cpp@{timer.cpp}!hayInterrupcionTimer@{hayInterrupcionTimer}}
+\index{hayInterrupcionTimer@{hayInterrupcionTimer}!timer.cpp@{timer.cpp}}
+\doxysubsubsection{\texorpdfstring{hayInterrupcionTimer()}{hayInterrupcionTimer()}}
+{\footnotesize\ttfamily \label{timer_8cpp_ab2f1e9f52c33f380ca417a370a79bb0b} 
+bool hay\+Interrupcion\+Timer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Consulta y consume la marca de interrupción del TIMER3. 
+
+Consulta y limpia la marca de interrupción pendiente.
+
+\begin{DoxyReturn}{Returns}
+true si se produjo al menos una comparación desde la última consulta; false si no hay ninguna pendiente. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Varias comparaciones antes de la consulta se representan con una sola marca.
+\end{DoxyNote}
+Consulta y consume la marca de interrupción del TIMER3.
+
+\begin{DoxyReturn}{Returns}
+true si ocurrió al menos una comparación desde la última consulta; false si no ocurrió ninguna. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Varias comparaciones pendientes se representan mediante una sola marca. 
+\end{DoxyNote}
+\Hypertarget{timer_8cpp_a92f988a5bed1410e96ce22717f5bd8ef}\index{timer.cpp@{timer.cpp}!setTimer@{setTimer}}
+\index{setTimer@{setTimer}!timer.cpp@{timer.cpp}}
+\doxysubsubsection{\texorpdfstring{setTimer()}{setTimer()}}
+{\footnotesize\ttfamily \label{timer_8cpp_a92f988a5bed1410e96ce22717f5bd8ef} 
+void set\+Timer (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{periodo\+Microsegundos}{}\end{DoxyParamCaption})}
+
+
+
+Configura y arranca TIMER3 para generar eventos periódicos. 
+
+Configura y arranca TIMER3 con interrupciones periódicas.
+
+
+\begin{DoxyParams}{Parameters}
+{\em periodo\+Microsegundos} & Periodo en microsegundos cargado en CC\+[0]. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+El temporizador utiliza una frecuencia de 1 MHz y reinicia el contador automáticamente tras cada comparación con CC\+[0].
+\end{DoxyNote}
+Configura y arranca TIMER3 para generar eventos periódicos.
+
+
+\begin{DoxyParams}{Parameters}
+{\em periodo\+Microsegundos} & Periodo en microsegundos cargado en CC\+[0]. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+TIMER3 trabaja a 1 MHz: un incremento del contador equivale a 1 µs. 
+\end{DoxyNote}
+\Hypertarget{timer_8cpp_aa6f6bfef028c7b053444cbd48567d286}\index{timer.cpp@{timer.cpp}!stopTimer@{stopTimer}}
+\index{stopTimer@{stopTimer}!timer.cpp@{timer.cpp}}
+\doxysubsubsection{\texorpdfstring{stopTimer()}{stopTimer()}}
+{\footnotesize\ttfamily \label{timer_8cpp_aa6f6bfef028c7b053444cbd48567d286} 
+void stop\+Timer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Detiene TIMER3, deshabilita su interrupción y borra la marca pendiente. 
+
+Detiene TIMER3 y borra la marca de interrupción pendiente.
+
+Detiene TIMER3, deshabilita su interrupción y borra la marca pendiente. 

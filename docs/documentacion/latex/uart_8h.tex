@@ -1,0 +1,81 @@
+\doxysection{include/\+hal/\+uart.h File Reference}
+\hypertarget{uart_8h}{}\label{uart_8h}\index{include/hal/uart.h@{include/hal/uart.h}}
+
+
+Declaraciones para inicializar y leer el puerto serie.  
+
+
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{uart_8h_a2531a428197475f184bd61c0b412396a}{init\+Serial}} ()
+\begin{DoxyCompactList}\small\item\em Inicia Serial a la velocidad definida por BAUDRATE. \end{DoxyCompactList}\item 
+String \doxymbox{\hyperlink{uart_8h_a64cdde9b269f4e7a1a75bdb60a5e6d53}{leer\+Serial}} ()
+\begin{DoxyCompactList}\small\item\em Lee una línea de Serial y elimina los blancos de los extremos. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{uart_8h_aca20a696a70b6069167bedda24ee1dd4}{serial\+To\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Declaración de una función de conversión de comandos serie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaraciones para inicializar y leer el puerto serie. 
+
+
+
+\label{uart_8h_doc-func-members}
+\Hypertarget{uart_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{uart_8h_a2531a428197475f184bd61c0b412396a}\index{uart.h@{uart.h}!initSerial@{initSerial}}
+\index{initSerial@{initSerial}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{initSerial()}{initSerial()}}
+{\footnotesize\ttfamily \label{uart_8h_a2531a428197475f184bd61c0b412396a} 
+void init\+Serial (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Inicia Serial a la velocidad definida por BAUDRATE. 
+
+Inicia el puerto serie a la velocidad definida por BAUDRATE.
+
+Inicia Serial a la velocidad definida por BAUDRATE. \Hypertarget{uart_8h_a64cdde9b269f4e7a1a75bdb60a5e6d53}\index{uart.h@{uart.h}!leerSerial@{leerSerial}}
+\index{leerSerial@{leerSerial}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{leerSerial()}{leerSerial()}}
+{\footnotesize\ttfamily \label{uart_8h_a64cdde9b269f4e7a1a75bdb60a5e6d53} 
+String leer\+Serial (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Lee una línea de Serial y elimina los blancos de los extremos. 
+
+Lee una línea recibida por Serial, elimina blancos en los extremos y la confirma.
+
+\begin{DoxyReturn}{Returns}
+Mensaje recibido, o cadena vacía si no hay datos disponibles. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Confirma por Serial el mensaje leído.
+\end{DoxyNote}
+Lee una línea de Serial y elimina los blancos de los extremos.
+
+\begin{DoxyReturn}{Returns}
+Mensaje recibido sin blancos en los extremos, o una cadena vacía si no hay datos disponibles. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+La lectura espera hasta el salto de línea o hasta el tiempo de espera configurado para Serial. 
+\end{DoxyNote}
+\Hypertarget{uart_8h_aca20a696a70b6069167bedda24ee1dd4}\index{uart.h@{uart.h}!serialToCommand@{serialToCommand}}
+\index{serialToCommand@{serialToCommand}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{serialToCommand()}{serialToCommand()}}
+{\footnotesize\ttfamily \label{uart_8h_aca20a696a70b6069167bedda24ee1dd4} 
+int serial\+To\+Command (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Declaración de una función de conversión de comandos serie. 
+
+\begin{DoxyReturn}{Returns}
+Código entero del comando; su significado depende de la implementación. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+No hay definición de esta función en los archivos .cpp facilitados. 
+\end{DoxyWarning}

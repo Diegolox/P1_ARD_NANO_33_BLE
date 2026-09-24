@@ -1,0 +1,136 @@
+\doxysection{include/\+hal/\+adc.h File Reference}
+\hypertarget{adc_8h}{}\label{adc_8h}\index{include/hal/adc.h@{include/hal/adc.h}}
+
+
+Declaraciones para leer el ADC y usar su lectura en una salida PWM.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{adc_8h_ac965767e9ebbec98da59491be653c299}{init\+ADC}} (int resolution)
+\begin{DoxyCompactList}\small\item\em Configura la resolución de analog\+Read(). \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{adc_8h_a53b7928aafd4a6832053b4f4befab9a8}{ADC\+\_\+to\+\_\+dutty}} (int pin, int scale, int resolution)
+\begin{DoxyCompactList}\small\item\em Convierte una lectura ADC al rango de ciclo de trabajo indicado. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{adc_8h_acd7f037238b9f7f552d72f38a53a2d3a}{print\+ADC}} ()
+\begin{DoxyCompactList}\small\item\em Imprime por Serial la lectura del pin ADC\+\_\+\+PIN. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{adc_8h_aaed8f13a9fc9ae75dd612dfe3ed0ae0c}{ADC\+\_\+to\+\_\+\+PWM}} ()
+\begin{DoxyCompactList}\small\item\em Convierte la lectura de ADC\+\_\+\+PIN en un ciclo de trabajo PWM. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaraciones para leer el ADC y usar su lectura en una salida PWM. 
+
+
+
+\label{adc_8h_doc-func-members}
+\Hypertarget{adc_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{adc_8h_a53b7928aafd4a6832053b4f4befab9a8}\index{adc.h@{adc.h}!ADC\_to\_dutty@{ADC\_to\_dutty}}
+\index{ADC\_to\_dutty@{ADC\_to\_dutty}!adc.h@{adc.h}}
+\doxysubsubsection{\texorpdfstring{ADC\_to\_dutty()}{ADC\_to\_dutty()}}
+{\footnotesize\ttfamily \label{adc_8h_a53b7928aafd4a6832053b4f4befab9a8} 
+int ADC\+\_\+to\+\_\+dutty (\begin{DoxyParamCaption}\item[{int}]{pin}{, }\item[{int}]{scale}{, }\item[{int}]{resolution}{}\end{DoxyParamCaption})}
+
+
+
+Convierte una lectura ADC al rango de ciclo de trabajo indicado. 
+
+Escala una lectura ADC al rango utilizado por la PWM.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Pin analógico del que se toma la lectura. \\
+\hline
+{\em scale} & Valor máximo de la escala de salida. \\
+\hline
+{\em resolution} & Valor máximo esperado de la lectura ADC. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Valor escalado con división entera. 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+resolution debe ser distinto de cero.
+\end{DoxyPrecond}
+Convierte una lectura ADC al rango de ciclo de trabajo indicado.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Pin analógico del que se obtiene la lectura. \\
+\hline
+{\em scale} & Valor máximo de la escala de salida. \\
+\hline
+{\em resolution} & Valor máximo esperado de la lectura ADC. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lectura escalada mediante aritmética entera. 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+resolution debe ser distinto de cero. 
+\end{DoxyPrecond}
+\Hypertarget{adc_8h_aaed8f13a9fc9ae75dd612dfe3ed0ae0c}\index{adc.h@{adc.h}!ADC\_to\_PWM@{ADC\_to\_PWM}}
+\index{ADC\_to\_PWM@{ADC\_to\_PWM}!adc.h@{adc.h}}
+\doxysubsubsection{\texorpdfstring{ADC\_to\_PWM()}{ADC\_to\_PWM()}}
+{\footnotesize\ttfamily \label{adc_8h_aaed8f13a9fc9ae75dd612dfe3ed0ae0c} 
+void ADC\+\_\+to\+\_\+\+PWM (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Convierte la lectura de ADC\+\_\+\+PIN en un ciclo de trabajo PWM. 
+
+Aplica al PWM el valor leído en ADC\+\_\+\+PIN y lo muestra por Serial.
+
+\begin{DoxyNote}{Note}
+Actualiza la salida PWM e imprime el ciclo de trabajo por Serial. 
+\end{DoxyNote}
+\begin{DoxyPrecond}{Precondition}
+El ADC, la PWM y Serial deben estar inicializados.
+\end{DoxyPrecond}
+Convierte la lectura de ADC\+\_\+\+PIN en un ciclo de trabajo PWM.
+
+Convierte el rango de lectura definido por ADC\+\_\+\+MAX al rango de salida definido por PWM\+\_\+\+MAX. \begin{DoxyPrecond}{Precondition}
+El ADC, el PWM y el puerto serie deben estar inicializados. 
+\end{DoxyPrecond}
+\Hypertarget{adc_8h_ac965767e9ebbec98da59491be653c299}\index{adc.h@{adc.h}!initADC@{initADC}}
+\index{initADC@{initADC}!adc.h@{adc.h}}
+\doxysubsubsection{\texorpdfstring{initADC()}{initADC()}}
+{\footnotesize\ttfamily \label{adc_8h_ac965767e9ebbec98da59491be653c299} 
+void init\+ADC (\begin{DoxyParamCaption}\item[{int}]{resolution}{}\end{DoxyParamCaption})}
+
+
+
+Configura la resolución de analog\+Read(). 
+
+Configura la resolución de las lecturas analógicas.
+
+
+\begin{DoxyParams}{Parameters}
+{\em resolution} & Número de bits de la lectura analógica.\\
+\hline
+\end{DoxyParams}
+Configura la resolución de analog\+Read().
+
+
+\begin{DoxyParams}{Parameters}
+{\em resolution} & Número de bits utilizado por analog\+Read(). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{adc_8h_acd7f037238b9f7f552d72f38a53a2d3a}\index{adc.h@{adc.h}!printADC@{printADC}}
+\index{printADC@{printADC}!adc.h@{adc.h}}
+\doxysubsubsection{\texorpdfstring{printADC()}{printADC()}}
+{\footnotesize\ttfamily \label{adc_8h_acd7f037238b9f7f552d72f38a53a2d3a} 
+void print\+ADC (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Imprime por Serial la lectura del pin ADC\+\_\+\+PIN. 
+
+Muestra por el puerto serie la lectura actual del pin ADC\+\_\+\+PIN.
+
+Imprime por Serial la lectura del pin ADC\+\_\+\+PIN.
+
+\begin{DoxyPrecond}{Precondition}
+El puerto serie debe estar inicializado. 
+\end{DoxyPrecond}

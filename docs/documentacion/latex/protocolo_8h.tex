@@ -1,0 +1,59 @@
+\doxysection{include/\+app/\+protocolo.h File Reference}
+\hypertarget{protocolo_8h}{}\label{protocolo_8h}\index{include/app/protocolo.h@{include/app/protocolo.h}}
+
+
+Declaraciones para interpretar comandos recibidos por Serial e I2C.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{protocolo_8h_a4766a1d29874f5e88c100dccd0500b03}{procesar\+Comando\+Serial}} ()
+\begin{DoxyCompactList}\small\item\em Procesa los comandos serie STOP, ADC, ADC(x) y PWM(x). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{protocolo_8h_aabd7a5c32c2e537329c68fd32703f9b7}{procesar\+Comando\+I2\+C\+\_\+\+IMU}} ()
+\begin{DoxyCompactList}\small\item\em Procesa un comando I2C de consulta de un registro de la \doxylink{struct_i_m_u}{IMU}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaraciones para interpretar comandos recibidos por Serial e I2C. 
+
+
+
+\label{protocolo_8h_doc-func-members}
+\Hypertarget{protocolo_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{protocolo_8h_aabd7a5c32c2e537329c68fd32703f9b7}\index{protocolo.h@{protocolo.h}!procesarComandoI2C\_IMU@{procesarComandoI2C\_IMU}}
+\index{procesarComandoI2C\_IMU@{procesarComandoI2C\_IMU}!protocolo.h@{protocolo.h}}
+\doxysubsubsection{\texorpdfstring{procesarComandoI2C\_IMU()}{procesarComandoI2C\_IMU()}}
+{\footnotesize\ttfamily \label{protocolo_8h_aabd7a5c32c2e537329c68fd32703f9b7} 
+void procesar\+Comando\+I2\+C\+\_\+\+IMU (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Procesa un comando I2C de consulta de un registro de la \doxylink{struct_i_m_u}{IMU}. 
+
+Interpreta el último comando I2C dirigido a los registros de la \doxylink{struct_i_m_u}{IMU}.
+
+Acepta un índice de \textquotesingle{}0\textquotesingle{} a \textquotesingle{}4\textquotesingle{} seguido de \textquotesingle{}A\textquotesingle{}, \textquotesingle{}G\textquotesingle{} o \textquotesingle{}M\textquotesingle{}. Si es válido, prepara la respuesta I2C correspondiente.
+
+Procesa un comando I2C de consulta de un registro de la \doxylink{struct_i_m_u}{IMU}.
+
+Acepta dos caracteres: un índice de \textquotesingle{}0\textquotesingle{} a \textquotesingle{}4\textquotesingle{} seguido de \textquotesingle{}A\textquotesingle{} (acelerómetro), \textquotesingle{}G\textquotesingle{} (giroscopio) o \textquotesingle{}M\textquotesingle{} (magnetómetro). Si el comando es válido, prepara la respuesta con \doxylink{telemetria_8h_aa2a1900cdc1451f8e380647f58bb0948}{send\+Telemetria()}. Los comandos ausentes o inválidos se descartan sin respuesta nueva. \Hypertarget{protocolo_8h_a4766a1d29874f5e88c100dccd0500b03}\index{protocolo.h@{protocolo.h}!procesarComandoSerial@{procesarComandoSerial}}
+\index{procesarComandoSerial@{procesarComandoSerial}!protocolo.h@{protocolo.h}}
+\doxysubsubsection{\texorpdfstring{procesarComandoSerial()}{procesarComandoSerial()}}
+{\footnotesize\ttfamily \label{protocolo_8h_a4766a1d29874f5e88c100dccd0500b03} 
+void procesar\+Comando\+Serial (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Procesa los comandos serie STOP, ADC, ADC(x) y PWM(x). 
+
+Procesa un comando recibido por el puerto serie.
+
+Permite detener el temporizador, leer el ADC, iniciar lecturas periódicas o ajustar el ciclo de trabajo de la PWM.
+
+Procesa los comandos serie STOP, ADC, ADC(x) y PWM(x).
+
+Reconoce STOP, ADC, ADC(x) y PWM(x). STOP detiene el temporizador y pone la PWM a cero. ADC imprime una lectura y detiene el temporizador. ADC(x) inicia un temporizador con x segundos de periodo; PWM(x) ajusta el ciclo de trabajo a uno de diez niveles, de 0 a 9. \begin{DoxyNote}{Note}
+La conversión de x se realiza con String::\+to\+Int(); no se valida expresamente si el contenido entre paréntesis es numérico. 
+\end{DoxyNote}

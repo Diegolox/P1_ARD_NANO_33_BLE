@@ -1,0 +1,43 @@
+\doxysection{include/\+config.h File Reference}
+\hypertarget{config_8h}{}\label{config_8h}\index{include/config.h@{include/config.h}}
+
+
+Pines y constantes generales de configuración del proyecto.  
+
+
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{config_8h_af458889265f213625129e2dd0707a69b}\label{config_8h_af458889265f213625129e2dd0707a69b} 
+\+\#define {\bfseries ADC\+\_\+\+PIN}~A0
+\begin{DoxyCompactList}\small\item\em Pin analógico utilizado para leer el ADC. \end{DoxyCompactList}\item 
+\Hypertarget{config_8h_af5a48adc9d939102a42f2829b7a1b8ac}\label{config_8h_af5a48adc9d939102a42f2829b7a1b8ac} 
+\+\#define {\bfseries PWM\+\_\+\+PIN}~A1
+\begin{DoxyCompactList}\small\item\em Pin utilizado como salida PWM. \end{DoxyCompactList}\item 
+\Hypertarget{config_8h_a00978ca9e8220475258dcbbbb7d29129}\label{config_8h_a00978ca9e8220475258dcbbbb7d29129} 
+\+\#define {\bfseries ADC\+\_\+\+RESOLUTION}~12
+\begin{DoxyCompactList}\small\item\em Resolución de la lectura ADC, en bits. \end{DoxyCompactList}\item 
+\Hypertarget{config_8h_a555a695bf58df062dc03f0e892d95cd7}\label{config_8h_a555a695bf58df062dc03f0e892d95cd7} 
+\+\#define {\bfseries ADC\+\_\+\+MAX}~4095
+\begin{DoxyCompactList}\small\item\em Valor máximo de una lectura ADC de 12 bits. \end{DoxyCompactList}\item 
+\Hypertarget{config_8h_a391fa1e490bd712720989b58fa0d9904}\label{config_8h_a391fa1e490bd712720989b58fa0d9904} 
+\+\#define {\bfseries PWM\+\_\+\+MAX}~255
+\begin{DoxyCompactList}\small\item\em Valor máximo utilizado para expresar el ciclo de trabajo PWM. \end{DoxyCompactList}\item 
+\Hypertarget{config_8h_a8e62e41f3683652130e337638553bf53}\label{config_8h_a8e62e41f3683652130e337638553bf53} 
+\+\#define {\bfseries TIMER\+\_\+\+PERIOD\+\_\+\+US}~1000000
+\begin{DoxyCompactList}\small\item\em Periodo de referencia del temporizador, en microsegundos. \end{DoxyCompactList}\item 
+\Hypertarget{config_8h_a2b7324bb75b96adb41c63add52d465ba}\label{config_8h_a2b7324bb75b96adb41c63add52d465ba} 
+\+\#define {\bfseries FRECUENCIA\+\_\+\+PWM}~7000
+\begin{DoxyCompactList}\small\item\em Frecuencia solicitada para la salida PWM, en hercios. \end{DoxyCompactList}\item 
+\Hypertarget{config_8h_a734bbab06e1a9fd2e5522db0221ff6e3}\label{config_8h_a734bbab06e1a9fd2e5522db0221ff6e3} 
+\+\#define {\bfseries BAUDRATE}~115200
+\begin{DoxyCompactList}\small\item\em Velocidad de comunicación del puerto serie, en baudios. \end{DoxyCompactList}\item 
+\Hypertarget{config_8h_aa6172bbf907b470b4c1c25555dcaabed}\label{config_8h_aa6172bbf907b470b4c1c25555dcaabed} 
+\+\#define {\bfseries ESP\+\_\+\+SLAVE}~0x08
+\begin{DoxyCompactList}\small\item\em Dirección I2C configurada para el ESP32 cuando actúa como esclavo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Pines y constantes generales de configuración del proyecto. 
+

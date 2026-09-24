@@ -1,0 +1,64 @@
+\doxysection{src/\+hal/\+uart.cpp File Reference}
+\hypertarget{uart_8cpp}{}\label{uart_8cpp}\index{src/hal/uart.cpp@{src/hal/uart.cpp}}
+
+
+Inicialización y lectura de mensajes por el puerto serie.  
+
+
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \+\#include "{}config.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{uart_8cpp_a2531a428197475f184bd61c0b412396a}{init\+Serial}} ()
+\begin{DoxyCompactList}\small\item\em Inicia el puerto serie a la velocidad definida por BAUDRATE. \end{DoxyCompactList}\item 
+String \doxymbox{\hyperlink{uart_8cpp_a64cdde9b269f4e7a1a75bdb60a5e6d53}{leer\+Serial}} ()
+\begin{DoxyCompactList}\small\item\em Lee una línea recibida por Serial, elimina blancos en los extremos y la confirma. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Inicialización y lectura de mensajes por el puerto serie. 
+
+
+
+\label{uart_8cpp_doc-func-members}
+\Hypertarget{uart_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{uart_8cpp_a2531a428197475f184bd61c0b412396a}\index{uart.cpp@{uart.cpp}!initSerial@{initSerial}}
+\index{initSerial@{initSerial}!uart.cpp@{uart.cpp}}
+\doxysubsubsection{\texorpdfstring{initSerial()}{initSerial()}}
+{\footnotesize\ttfamily \label{uart_8cpp_a2531a428197475f184bd61c0b412396a} 
+void init\+Serial (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Inicia el puerto serie a la velocidad definida por BAUDRATE. 
+
+Inicia Serial a la velocidad definida por BAUDRATE.
+
+Inicia el puerto serie a la velocidad definida por BAUDRATE. \Hypertarget{uart_8cpp_a64cdde9b269f4e7a1a75bdb60a5e6d53}\index{uart.cpp@{uart.cpp}!leerSerial@{leerSerial}}
+\index{leerSerial@{leerSerial}!uart.cpp@{uart.cpp}}
+\doxysubsubsection{\texorpdfstring{leerSerial()}{leerSerial()}}
+{\footnotesize\ttfamily \label{uart_8cpp_a64cdde9b269f4e7a1a75bdb60a5e6d53} 
+String leer\+Serial (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Lee una línea recibida por Serial, elimina blancos en los extremos y la confirma. 
+
+Lee una línea de Serial y elimina los blancos de los extremos.
+
+\begin{DoxyReturn}{Returns}
+Mensaje recibido sin blancos en los extremos, o una cadena vacía si no hay datos disponibles. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+La lectura espera hasta el salto de línea o hasta el tiempo de espera configurado para Serial.
+\end{DoxyNote}
+Lee una línea recibida por Serial, elimina blancos en los extremos y la confirma.
+
+\begin{DoxyReturn}{Returns}
+Mensaje recibido, o cadena vacía si no hay datos disponibles. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Confirma por Serial el mensaje leído. 
+\end{DoxyNote}

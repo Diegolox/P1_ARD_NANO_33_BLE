@@ -1,0 +1,272 @@
+\doxysection{src/\+hal/\+\+I2C.cpp File Reference}
+\hypertarget{_i2_c_8cpp}{}\label{_i2_c_8cpp}\index{src/hal/I2C.cpp@{src/hal/I2C.cpp}}
+
+
+Comunicación I2C como maestro o esclavo y gestión de comandos y respuestas.  
+
+
+{\ttfamily \+\#include $<$Wire.\+h$>$}\newline
+{\ttfamily \+\#include "{}hal/\+i2c.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{_i2_c_8cpp_abe298a3c1d98035cebe8b0535db549fa}{init\+I2C}} ()
+\begin{DoxyCompactList}\small\item\em Inicia el bus I2C del Arduino en modo maestro. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_i2_c_8cpp_adc8434b0400178f8e64f114a088cf94e}{init\+I2C}} (uint8\+\_\+t direccion)
+\begin{DoxyCompactList}\small\item\em Inicia el bus I2C en modo esclavo y registra las funciones de respuesta. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{_i2_c_8cpp_afc0a9c805ca5734875327cbec380a920}{escribir\+I2C}} (uint8\+\_\+t direccion, uint8\+\_\+t dato)
+\begin{DoxyCompactList}\small\item\em Envía un byte a un dispositivo I2C. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{_i2_c_8cpp_a9b9524db09a83fe92c7979e36e6055c4}{escribir\+I2C}} (uint8\+\_\+t direccion, const char \texorpdfstring{$\ast$}{*}texto)
+\begin{DoxyCompactList}\small\item\em Envía el contenido de una cadena de caracteres por I2C. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{_i2_c_8cpp_ac34ec3da13d9b7d9cf75c9006eb1dcba}{leer\+Esclavo\+I2C}} (uint8\+\_\+t direccion)
+\begin{DoxyCompactList}\small\item\em Solicita y lee un byte de un esclavo I2C. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_i2_c_8cpp_a82fba858d3e86cf21211100a87e686b1}{recibir\+I2C}} (int numero\+Bytes)
+\begin{DoxyCompactList}\small\item\em Recibe un comando I2C de dos caracteres y lo deja pendiente de procesar. \end{DoxyCompactList}\item 
+String \doxymbox{\hyperlink{_i2_c_8cpp_a9d78a30f4751a27b99b987fe5b147f56}{leer\+Comando\+I2C}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene el último comando recibido y limpia su indicador de disponibilidad. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_i2_c_8cpp_a722cfa2ad722c60758ddad5f6fe39aaf}{preparar\+Respuesta\+I2C}} (const char \texorpdfstring{$\ast$}{*}texto)
+\begin{DoxyCompactList}\small\item\em Copia una cadena al búfer de respuesta I2C del esclavo. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_i2_c_8cpp_a348db73ad5c44a8c3bef49a4215ee31f}{enviar\+Respuesta\+I2C}} ()
+\begin{DoxyCompactList}\small\item\em Envía los 32 bytes del búfer de respuesta cuando el maestro los solicita. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_i2_c_8cpp_aef14c390ac8f22c14e25f49ae06a547a}\label{_i2_c_8cpp_aef14c390ac8f22c14e25f49ae06a547a} 
+volatile bool {\bfseries comando\+Disponible} = 0
+\begin{DoxyCompactList}\small\item\em Indica si hay un comando I2C de dos caracteres pendiente de leer. \end{DoxyCompactList}\item 
+\Hypertarget{_i2_c_8cpp_ac9e7ae4c9b94f65939ad78767ed82e2b}\label{_i2_c_8cpp_ac9e7ae4c9b94f65939ad78767ed82e2b} 
+char {\bfseries Buffer\+I2C} \+[10]
+\begin{DoxyCompactList}\small\item\em Almacena el último comando recibido y su terminador nulo. \end{DoxyCompactList}\item 
+\Hypertarget{_i2_c_8cpp_a01123bd5993fed9d356dd358e26bafa0}\label{_i2_c_8cpp_a01123bd5993fed9d356dd358e26bafa0} 
+char {\bfseries respuesta\+I2C} \+[32] = "{}ESPERA"{}
+\begin{DoxyCompactList}\small\item\em Respuesta de tamaño fijo que envía el esclavo al maestro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Comunicación I2C como maestro o esclavo y gestión de comandos y respuestas. 
+
+
+
+\label{_i2_c_8cpp_doc-func-members}
+\Hypertarget{_i2_c_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_i2_c_8cpp_a348db73ad5c44a8c3bef49a4215ee31f}\index{I2C.cpp@{I2C.cpp}!enviarRespuestaI2C@{enviarRespuestaI2C}}
+\index{enviarRespuestaI2C@{enviarRespuestaI2C}!I2C.cpp@{I2C.cpp}}
+\doxysubsubsection{\texorpdfstring{enviarRespuestaI2C()}{enviarRespuestaI2C()}}
+{\footnotesize\ttfamily \label{_i2_c_8cpp_a348db73ad5c44a8c3bef49a4215ee31f} 
+void enviar\+Respuesta\+I2C (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Envía los 32 bytes del búfer de respuesta cuando el maestro los solicita. 
+
+Envía el búfer de 32 bytes cuando el maestro solicita datos.
+
+Función registrada como callback mediante Wire.\+on\+Request().
+
+Envía los 32 bytes del búfer de respuesta cuando el maestro los solicita.
+
+\begin{DoxyNote}{Note}
+Función registrada con Wire.\+on\+Request(). 
+\end{DoxyNote}
+\Hypertarget{_i2_c_8cpp_a9b9524db09a83fe92c7979e36e6055c4}\index{I2C.cpp@{I2C.cpp}!escribirI2C@{escribirI2C}}
+\index{escribirI2C@{escribirI2C}!I2C.cpp@{I2C.cpp}}
+\doxysubsubsection{\texorpdfstring{escribirI2C()}{escribirI2C()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{_i2_c_8cpp_a9b9524db09a83fe92c7979e36e6055c4} 
+bool escribir\+I2C (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{direccion}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{texto}{}\end{DoxyParamCaption})}
+
+
+
+Envía el contenido de una cadena de caracteres por I2C. 
+
+Envía el contenido de una cadena a un dispositivo I2C.
+
+
+\begin{DoxyParams}{Parameters}
+{\em direccion} & Dirección I2C del destinatario. \\
+\hline
+{\em texto} & Cadena terminada en nulo que se envía sin el terminador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si la transmisión finaliza sin error; false en caso contrario.
+\end{DoxyReturn}
+Envía el contenido de una cadena de caracteres por I2C.
+
+
+\begin{DoxyParams}{Parameters}
+{\em direccion} & Dirección del destinatario. \\
+\hline
+{\em texto} & Cadena terminada en nulo; el terminador no se envía. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si la transmisión finaliza sin error; false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{_i2_c_8cpp_afc0a9c805ca5734875327cbec380a920}\index{I2C.cpp@{I2C.cpp}!escribirI2C@{escribirI2C}}
+\index{escribirI2C@{escribirI2C}!I2C.cpp@{I2C.cpp}}
+\doxysubsubsection{\texorpdfstring{escribirI2C()}{escribirI2C()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{_i2_c_8cpp_afc0a9c805ca5734875327cbec380a920} 
+bool escribir\+I2C (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{direccion}{, }\item[{uint8\+\_\+t}]{dato}{}\end{DoxyParamCaption})}
+
+
+
+Envía un byte a un dispositivo I2C. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em direccion} & Dirección I2C del destinatario. \\
+\hline
+{\em dato} & Byte que se envía. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si la transmisión finaliza sin error; false en caso contrario.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em direccion} & Dirección del destinatario. \\
+\hline
+{\em dato} & Byte que se envía. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si la transmisión finaliza sin error; false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{_i2_c_8cpp_abe298a3c1d98035cebe8b0535db549fa}\index{I2C.cpp@{I2C.cpp}!initI2C@{initI2C}}
+\index{initI2C@{initI2C}!I2C.cpp@{I2C.cpp}}
+\doxysubsubsection{\texorpdfstring{initI2C()}{initI2C()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{_i2_c_8cpp_abe298a3c1d98035cebe8b0535db549fa} 
+void init\+I2C (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Inicia el bus I2C del Arduino en modo maestro. 
+
+Inicializa el bus I2C en modo maestro.
+
+Inicia el bus I2C del Arduino en modo maestro. \Hypertarget{_i2_c_8cpp_adc8434b0400178f8e64f114a088cf94e}\index{I2C.cpp@{I2C.cpp}!initI2C@{initI2C}}
+\index{initI2C@{initI2C}!I2C.cpp@{I2C.cpp}}
+\doxysubsubsection{\texorpdfstring{initI2C()}{initI2C()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{_i2_c_8cpp_adc8434b0400178f8e64f114a088cf94e} 
+void init\+I2C (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{direccion}{}\end{DoxyParamCaption})}
+
+
+
+Inicia el bus I2C en modo esclavo y registra las funciones de respuesta. 
+
+Inicializa el bus I2C en modo esclavo y registra sus callbacks.
+
+
+\begin{DoxyParams}{Parameters}
+{\em direccion} & Dirección I2C asignada al esclavo.\\
+\hline
+\end{DoxyParams}
+Inicia el bus I2C en modo esclavo y registra las funciones de respuesta.
+
+
+\begin{DoxyParams}{Parameters}
+{\em direccion} & Dirección I2C asignada al dispositivo. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_i2_c_8cpp_a9d78a30f4751a27b99b987fe5b147f56}\index{I2C.cpp@{I2C.cpp}!leerComandoI2C@{leerComandoI2C}}
+\index{leerComandoI2C@{leerComandoI2C}!I2C.cpp@{I2C.cpp}}
+\doxysubsubsection{\texorpdfstring{leerComandoI2C()}{leerComandoI2C()}}
+{\footnotesize\ttfamily \label{_i2_c_8cpp_a9d78a30f4751a27b99b987fe5b147f56} 
+String leer\+Comando\+I2C (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene el último comando recibido y limpia su indicador de disponibilidad. 
+
+Obtiene el comando recibido y limpia la marca de disponibilidad.
+
+\begin{DoxyReturn}{Returns}
+Comando de dos caracteres, o una cadena vacía si no hay uno pendiente.
+\end{DoxyReturn}
+Obtiene el último comando recibido y limpia su indicador de disponibilidad.
+
+\begin{DoxyReturn}{Returns}
+Comando de dos caracteres, o cadena vacía si no hay uno pendiente. 
+\end{DoxyReturn}
+\Hypertarget{_i2_c_8cpp_ac34ec3da13d9b7d9cf75c9006eb1dcba}\index{I2C.cpp@{I2C.cpp}!leerEsclavoI2C@{leerEsclavoI2C}}
+\index{leerEsclavoI2C@{leerEsclavoI2C}!I2C.cpp@{I2C.cpp}}
+\doxysubsubsection{\texorpdfstring{leerEsclavoI2C()}{leerEsclavoI2C()}}
+{\footnotesize\ttfamily \label{_i2_c_8cpp_ac34ec3da13d9b7d9cf75c9006eb1dcba} 
+int leer\+Esclavo\+I2C (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{direccion}{}\end{DoxyParamCaption})}
+
+
+
+Solicita y lee un byte de un esclavo I2C. 
+
+Solicita un byte a un esclavo I2C.
+
+
+\begin{DoxyParams}{Parameters}
+{\em direccion} & Dirección I2C del esclavo. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Valor del byte recibido (0 a 255), o -\/1 si no se recibe ninguno.
+\end{DoxyReturn}
+Solicita y lee un byte de un esclavo I2C.
+
+
+\begin{DoxyParams}{Parameters}
+{\em direccion} & Dirección del esclavo. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Byte recibido (0 a 255), o -\/1 si no se ha recibido ninguno. 
+\end{DoxyReturn}
+\Hypertarget{_i2_c_8cpp_a722cfa2ad722c60758ddad5f6fe39aaf}\index{I2C.cpp@{I2C.cpp}!prepararRespuestaI2C@{prepararRespuestaI2C}}
+\index{prepararRespuestaI2C@{prepararRespuestaI2C}!I2C.cpp@{I2C.cpp}}
+\doxysubsubsection{\texorpdfstring{prepararRespuestaI2C()}{prepararRespuestaI2C()}}
+{\footnotesize\ttfamily \label{_i2_c_8cpp_a722cfa2ad722c60758ddad5f6fe39aaf} 
+void preparar\+Respuesta\+I2C (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{texto}{}\end{DoxyParamCaption})}
+
+
+
+Copia una cadena al búfer de respuesta I2C del esclavo. 
+
+Prepara el búfer de 32 bytes que se enviará al maestro I2C.
+
+Se conservan como máximo 31 caracteres y se completa con ceros el resto del búfer de 32 bytes. 
+\begin{DoxyParams}{Parameters}
+{\em texto} & Cadena terminada en nulo que se prepara para el envío.\\
+\hline
+\end{DoxyParams}
+Copia una cadena al búfer de respuesta I2C del esclavo.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texto} & Cadena terminada en nulo; se copian hasta 31 caracteres. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_i2_c_8cpp_a82fba858d3e86cf21211100a87e686b1}\index{I2C.cpp@{I2C.cpp}!recibirI2C@{recibirI2C}}
+\index{recibirI2C@{recibirI2C}!I2C.cpp@{I2C.cpp}}
+\doxysubsubsection{\texorpdfstring{recibirI2C()}{recibirI2C()}}
+{\footnotesize\ttfamily \label{_i2_c_8cpp_a82fba858d3e86cf21211100a87e686b1} 
+void recibir\+I2C (\begin{DoxyParamCaption}\item[{int}]{numero\+Bytes}{}\end{DoxyParamCaption})}
+
+
+
+Recibe un comando I2C de dos caracteres y lo deja pendiente de procesar. 
+
+Guarda un comando I2C de dos caracteres recibido por el esclavo.
+
+Se utiliza como función de recepción registrada con Wire.\+on\+Receive(). El primer carácter identifica el registro y el segundo el sensor. 
+\begin{DoxyParams}{Parameters}
+{\em numero\+Bytes} & Número de bytes indicado por la biblioteca Wire.\\
+\hline
+\end{DoxyParams}
+Recibe un comando I2C de dos caracteres y lo deja pendiente de procesar.
+
+
+\begin{DoxyParams}{Parameters}
+{\em numero\+Bytes} & Número de bytes notificado por Wire.\+on\+Receive(). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Solo guarda el comando si numero\+Bytes es 2 y ambos bytes están disponibles. 
+\end{DoxyNote}

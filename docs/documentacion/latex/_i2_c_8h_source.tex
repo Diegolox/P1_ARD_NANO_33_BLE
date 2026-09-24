@@ -1,0 +1,53 @@
+\doxysection{I2\+C.\+h}
+\hypertarget{_i2_c_8h_source}{}\label{_i2_c_8h_source}\index{include/hal/I2C.h@{include/hal/I2C.h}}
+\doxymbox{\hyperlink{_i2_c_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ I2C\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ I2C\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ inicialización}}
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_i2_c_8h_abe298a3c1d98035cebe8b0535db549fa}{initI2C}}();\ \textcolor{comment}{//\ master}}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_i2_c_8h_abe298a3c1d98035cebe8b0535db549fa}{initI2C}}(uint8\_t\ direccion);\ \textcolor{comment}{//\ slave}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ funciones\ maestro}}
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{_i2_c_8h_afc0a9c805ca5734875327cbec380a920}{escribirI2C}}(uint8\_t\ direccion,\ uint8\_t\ dato);}
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{_i2_c_8h_afc0a9c805ca5734875327cbec380a920}{escribirI2C}}(uint8\_t\ direccion,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ texto);}
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_i2_c_8h_ac34ec3da13d9b7d9cf75c9006eb1dcba}{leerEsclavoI2C}}(uint8\_t\ direccion);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ funciones\ esclavo}}
+\DoxyCodeLine{00047\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_i2_c_8h_a82fba858d3e86cf21211100a87e686b1}{recibirI2C}}(\textcolor{keywordtype}{int}\ numeroBytes);}
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_i2_c_8h_af00e06fe9963a9c05e5c1ae2d9d14d58}{responderMasterI2C}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ buffer);}
+\DoxyCodeLine{00058\ String\ \doxymbox{\hyperlink{_i2_c_8h_a9d78a30f4751a27b99b987fe5b147f56}{leerComandoI2C}}();}
+\DoxyCodeLine{00063\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_i2_c_8h_a722cfa2ad722c60758ddad5f6fe39aaf}{prepararRespuestaI2C}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ texto);}
+\DoxyCodeLine{00068\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_i2_c_8h_a348db73ad5c44a8c3bef49a4215ee31f}{enviarRespuestaI2C}}();}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ \ \ \ -\/-\/-\/\ EJEMPLOS\ MASTER\ -\/-\/-\/}}
+\DoxyCodeLine{00075\ \textcolor{comment}{}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ \ \ //\ Enviar\ un\ byte}}
+\DoxyCodeLine{00077\ \textcolor{comment}{\ \ \ \ escribirI2C(0x08,\ static\_cast<uint8\_t>('A'));}}
+\DoxyCodeLine{00078\ \textcolor{comment}{}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ \ \ \ //\ Enviar\ el\ buffer\ de\ snprintf}}
+\DoxyCodeLine{00080\ \textcolor{comment}{\ \ \ \ char\ buffer[100];}}
+\DoxyCodeLine{00081\ \textcolor{comment}{}}
+\DoxyCodeLine{00082\ \textcolor{comment}{\ \ \ \ snprintf(buffer,\ sizeof(buffer),\ "{}Valor:\ \%d"{},\ 25);}}
+\DoxyCodeLine{00083\ \textcolor{comment}{}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ \ \ \ escribirI2C(0x08,\ buffer);}}
+\DoxyCodeLine{00085\ \textcolor{comment}{}}
+\DoxyCodeLine{00086\ \textcolor{comment}{\ \ \ \ //\ Leer\ un\ byte}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ \ int\ recibido\ =\ leerI2C(0x08);}}
+\DoxyCodeLine{00088\ \textcolor{comment}{}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ \ \ \ if\ (recibido\ !=\ -\/1)}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ \ \ \ \{}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ \ \ \ \ \ \ \ Serial.println(static\_cast<char>(recibido));}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ \ \ \ \}}}
+\DoxyCodeLine{00093\ \textcolor{comment}{}}
+\DoxyCodeLine{00094\ \textcolor{comment}{*/}}
+
+\end{DoxyCode}

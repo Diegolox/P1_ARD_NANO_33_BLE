@@ -1,0 +1,163 @@
+\doxysection{include/\+bsp/\+\+IMU.h File Reference}
+\hypertarget{_i_m_u_8h}{}\label{_i_m_u_8h}\index{include/bsp/IMU.h@{include/bsp/IMU.h}}
+
+
+Tipos de datos y funciones de lectura de la \doxylink{struct_i_m_u}{IMU}.  
+
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_vector3_d}{Vector3D}}
+\begin{DoxyCompactList}\small\item\em Vector de tres componentes utilizado para las lecturas de sensores. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_i_m_u}{IMU}}
+\begin{DoxyCompactList}\small\item\em Registro de una muestra de acelerómetro, giroscopio y magnetómetro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{_i_m_u_8h_ab800228f8f6c541e7f911175491fa0be}{init\+IMU}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa la \doxylink{struct_i_m_u}{IMU}. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{_i_m_u_8h_aa0af6845ccb31451edc21baad1b5aac2}{leer\+Acelerometro}} (\doxymbox{\hyperlink{struct_vector3_d}{Vector3D}} \&aceleracion)
+\begin{DoxyCompactList}\small\item\em Lee la aceleración de los tres ejes si hay una muestra disponible. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{_i_m_u_8h_a8e2f0428f7c5d876a8f127b46bf86738}{leer\+Giroscopo}} (\doxymbox{\hyperlink{struct_vector3_d}{Vector3D}} \&giroscopio)
+\begin{DoxyCompactList}\small\item\em Lee la velocidad angular de los tres ejes si hay una muestra disponible. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{_i_m_u_8h_a5103c6a4b986aaace4e3d21290da1519}{leer\+Magnetometro}} (\doxymbox{\hyperlink{struct_vector3_d}{Vector3D}} \&campo\+Magnetico)
+\begin{DoxyCompactList}\small\item\em Lee el campo magnético de los tres ejes si hay una muestra disponible. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Tipos de datos y funciones de lectura de la \doxylink{struct_i_m_u}{IMU}. 
+
+
+
+\label{_i_m_u_8h_doc-func-members}
+\Hypertarget{_i_m_u_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_i_m_u_8h_ab800228f8f6c541e7f911175491fa0be}\index{IMU.h@{IMU.h}!initIMU@{initIMU}}
+\index{initIMU@{initIMU}!IMU.h@{IMU.h}}
+\doxysubsubsection{\texorpdfstring{initIMU()}{initIMU()}}
+{\footnotesize\ttfamily \label{_i_m_u_8h_ab800228f8f6c541e7f911175491fa0be} 
+bool init\+IMU (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa la \doxylink{struct_i_m_u}{IMU}. 
+
+Inicializa la \doxylink{struct_i_m_u}{IMU} mediante la biblioteca Arduino\+\_\+\+LSM9\+DS1.
+
+\begin{DoxyReturn}{Returns}
+true si la inicialización tiene éxito; false en caso contrario.
+\end{DoxyReturn}
+Inicializa la \doxylink{struct_i_m_u}{IMU}.
+
+\begin{DoxyReturn}{Returns}
+true si la inicialización tiene éxito; false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{_i_m_u_8h_aa0af6845ccb31451edc21baad1b5aac2}\index{IMU.h@{IMU.h}!leerAcelerometro@{leerAcelerometro}}
+\index{leerAcelerometro@{leerAcelerometro}!IMU.h@{IMU.h}}
+\doxysubsubsection{\texorpdfstring{leerAcelerometro()}{leerAcelerometro()}}
+{\footnotesize\ttfamily \label{_i_m_u_8h_aa0af6845ccb31451edc21baad1b5aac2} 
+bool leer\+Acelerometro (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_vector3_d}{Vector3D}} \&}]{aceleracion}{}\end{DoxyParamCaption})}
+
+
+
+Lee la aceleración de los tres ejes si hay una muestra disponible. 
+
+Lee los tres ejes del acelerómetro cuando hay datos disponibles.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em aceleracion} & Vector de salida en g. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se ha leído una muestra; false si no había datos disponibles. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Si devuelve false, el vector no se modifica.
+\end{DoxyNote}
+Lee la aceleración de los tres ejes si hay una muestra disponible.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em aceleracion} & Vector donde se guardan los valores X, Y y Z, en g. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si había una muestra disponible; false en caso contrario. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Si no hay muestra, el vector no se modifica. 
+\end{DoxyNote}
+\Hypertarget{_i_m_u_8h_a8e2f0428f7c5d876a8f127b46bf86738}\index{IMU.h@{IMU.h}!leerGiroscopo@{leerGiroscopo}}
+\index{leerGiroscopo@{leerGiroscopo}!IMU.h@{IMU.h}}
+\doxysubsubsection{\texorpdfstring{leerGiroscopo()}{leerGiroscopo()}}
+{\footnotesize\ttfamily \label{_i_m_u_8h_a8e2f0428f7c5d876a8f127b46bf86738} 
+bool leer\+Giroscopo (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_vector3_d}{Vector3D}} \&}]{giroscopio}{}\end{DoxyParamCaption})}
+
+
+
+Lee la velocidad angular de los tres ejes si hay una muestra disponible. 
+
+Lee los tres ejes del giroscopio cuando hay datos disponibles.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em giroscopio} & Vector de salida en °/\+s. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se ha leído una muestra; false si no había datos disponibles. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Si devuelve false, el vector no se modifica.
+\end{DoxyNote}
+Lee la velocidad angular de los tres ejes si hay una muestra disponible.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em giroscopio} & Vector donde se guardan los valores X, Y y Z, en °/\+s. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si había una muestra disponible; false en caso contrario. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Si no hay muestra, el vector no se modifica. 
+\end{DoxyNote}
+\Hypertarget{_i_m_u_8h_a5103c6a4b986aaace4e3d21290da1519}\index{IMU.h@{IMU.h}!leerMagnetometro@{leerMagnetometro}}
+\index{leerMagnetometro@{leerMagnetometro}!IMU.h@{IMU.h}}
+\doxysubsubsection{\texorpdfstring{leerMagnetometro()}{leerMagnetometro()}}
+{\footnotesize\ttfamily \label{_i_m_u_8h_a5103c6a4b986aaace4e3d21290da1519} 
+bool leer\+Magnetometro (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_vector3_d}{Vector3D}} \&}]{campo\+Magnetico}{}\end{DoxyParamCaption})}
+
+
+
+Lee el campo magnético de los tres ejes si hay una muestra disponible. 
+
+Lee los tres ejes del magnetómetro cuando hay datos disponibles.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em campo\+Magnetico} & Vector de salida en µT. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se ha leído una muestra; false si no había datos disponibles. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Si devuelve false, el vector no se modifica.
+\end{DoxyNote}
+Lee el campo magnético de los tres ejes si hay una muestra disponible.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em campo\+Magnetico} & Vector donde se guardan los valores X, Y y Z, en µT. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si había una muestra disponible; false en caso contrario. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Si no hay muestra, el vector no se modifica. 
+\end{DoxyNote}

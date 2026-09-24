@@ -1,0 +1,113 @@
+\doxysection{include/\+app/\+telemetria.h File Reference}
+\hypertarget{telemetria_8h}{}\label{telemetria_8h}\index{include/app/telemetria.h@{include/app/telemetria.h}}
+
+
+Declaraciones para mostrar, guardar y responder con datos de la \doxylink{struct_i_m_u}{IMU}.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{telemetria_8h_a6847563bffbd9201a6d390cf08ded3f0}{print\+IMU}} ()
+\begin{DoxyCompactList}\small\item\em Muestra por Serial las últimas lecturas de los tres sensores de la \doxylink{struct_i_m_u}{IMU}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{telemetria_8h_aa2a1900cdc1451f8e380647f58bb0948}{send\+Telemetria}} (int num\+Registro, char dato)
+\begin{DoxyCompactList}\small\item\em Prepara en el búfer I2C la lectura de un registro de la \doxylink{struct_i_m_u}{IMU}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{telemetria_8h_a22c8bcd1f748a2ffbd2ea0a21f53ee7a}{guardar\+Muestra\+IMU}} (int num\+Registro)
+\begin{DoxyCompactList}\small\item\em Guarda las lecturas actuales de la \doxylink{struct_i_m_u}{IMU} en un registro del búfer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaraciones para mostrar, guardar y responder con datos de la \doxylink{struct_i_m_u}{IMU}. 
+
+
+
+\label{telemetria_8h_doc-func-members}
+\Hypertarget{telemetria_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{telemetria_8h_a22c8bcd1f748a2ffbd2ea0a21f53ee7a}\index{telemetria.h@{telemetria.h}!guardarMuestraIMU@{guardarMuestraIMU}}
+\index{guardarMuestraIMU@{guardarMuestraIMU}!telemetria.h@{telemetria.h}}
+\doxysubsubsection{\texorpdfstring{guardarMuestraIMU()}{guardarMuestraIMU()}}
+{\footnotesize\ttfamily \label{telemetria_8h_a22c8bcd1f748a2ffbd2ea0a21f53ee7a} 
+void guardar\+Muestra\+IMU (\begin{DoxyParamCaption}\item[{int}]{num\+Registro}{}\end{DoxyParamCaption})}
+
+
+
+Guarda las lecturas actuales de la \doxylink{struct_i_m_u}{IMU} en un registro del búfer. 
+
+Lee la \doxylink{struct_i_m_u}{IMU} y copia los valores en una posición del búfer de muestras.
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Registro} & Índice del registro, entre 0 y 4. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Ignora los índices fuera del rango y conserva los valores previos de un sensor cuando no hay una nueva muestra disponible.
+\end{DoxyNote}
+Guarda las lecturas actuales de la \doxylink{struct_i_m_u}{IMU} en un registro del búfer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Registro} & Índice del registro que se actualiza, de 0 a 4. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Ignora índices fuera del rango. No comprueba si hay datos nuevos antes de copiar los valores conservados en los vectores. 
+\end{DoxyNote}
+\Hypertarget{telemetria_8h_a6847563bffbd9201a6d390cf08ded3f0}\index{telemetria.h@{telemetria.h}!printIMU@{printIMU}}
+\index{printIMU@{printIMU}!telemetria.h@{telemetria.h}}
+\doxysubsubsection{\texorpdfstring{printIMU()}{printIMU()}}
+{\footnotesize\ttfamily \label{telemetria_8h_a6847563bffbd9201a6d390cf08ded3f0} 
+void print\+IMU (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Muestra por Serial las últimas lecturas de los tres sensores de la \doxylink{struct_i_m_u}{IMU}. 
+
+Lee los tres sensores de la \doxylink{struct_i_m_u}{IMU} y muestra sus ejes por Serial.
+
+\begin{DoxyNote}{Note}
+Si alguna lectura no está disponible, se conserva el valor anterior del vector correspondiente.
+\end{DoxyNote}
+Muestra por Serial las últimas lecturas de los tres sensores de la \doxylink{struct_i_m_u}{IMU}.
+
+\begin{DoxyNote}{Note}
+No comprueba el resultado de las funciones de lectura; si no hay muestra nueva, se imprimen los valores que conserve cada vector. 
+\end{DoxyNote}
+\Hypertarget{telemetria_8h_aa2a1900cdc1451f8e380647f58bb0948}\index{telemetria.h@{telemetria.h}!sendTelemetria@{sendTelemetria}}
+\index{sendTelemetria@{sendTelemetria}!telemetria.h@{telemetria.h}}
+\doxysubsubsection{\texorpdfstring{sendTelemetria()}{sendTelemetria()}}
+{\footnotesize\ttfamily \label{telemetria_8h_aa2a1900cdc1451f8e380647f58bb0948} 
+void send\+Telemetria (\begin{DoxyParamCaption}\item[{int}]{num\+Registro}{, }\item[{char}]{dato}{}\end{DoxyParamCaption})}
+
+
+
+Prepara en el búfer I2C la lectura de un registro de la \doxylink{struct_i_m_u}{IMU}. 
+
+Prepara una respuesta I2C con los datos de un registro de la \doxylink{struct_i_m_u}{IMU}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Registro} & Índice de registro comprendido entre 0 y 4. \\
+\hline
+{\em dato} & Sensor solicitado: \textquotesingle{}A\textquotesingle{} (acelerómetro), \textquotesingle{}G\textquotesingle{} (giroscopio) o \textquotesingle{}M\textquotesingle{} (magnetómetro). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+num\+Registro debe estar entre 0 y 4; la función no valida ese índice.
+\end{DoxyPrecond}
+Prepara en el búfer I2C la lectura de un registro de la \doxylink{struct_i_m_u}{IMU}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Registro} & Índice del registro solicitado, de 0 a 4. \\
+\hline
+{\em dato} & Sensor solicitado: \textquotesingle{}A\textquotesingle{} (aceleración), \textquotesingle{}G\textquotesingle{} (giroscopio) o \textquotesingle{}M\textquotesingle{} (campo magnético). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+num\+Registro debe estar entre 0 y 4; esta función no valida el índice. 
+\end{DoxyPrecond}
+\begin{DoxyNote}{Note}
+Ante un tipo de sensor desconocido, conserva la respuesta anterior. 
+\end{DoxyNote}
