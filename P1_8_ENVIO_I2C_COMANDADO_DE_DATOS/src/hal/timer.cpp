@@ -1,9 +1,18 @@
+/**
+ * @file timer.cpp
+ * @brief Configuración del TIMER3 y comunicación de sus eventos al programa.
+ */
 #include "hal/timer.h"
 #include <nrf_timer.h>
 
+/** @brief Señala que TIMER3 ha alcanzado el valor de comparación. */
 volatile bool interrupcionTimer = false;
 
 // Esta función se ejecuta al cumplirse el periodo del TIMER3
+/**
+ * @brief Atiende la interrupción de comparación del TIMER3.
+ * @details Limpia el evento de hardware y activa una marca para el programa.
+ */
 static void isrTimer3() {
   if (NRF_TIMER3->EVENTS_COMPARE[0] == 1) {
     NRF_TIMER3->EVENTS_COMPARE[0] = 0;  // Borra el evento pendiente
@@ -11,6 +20,12 @@ static void isrTimer3() {
   }
 }
 
+/**
+ * @brief Configura y arranca TIMER3 para generar eventos periódicos.
+ * @param periodoMicrosegundos Periodo en microsegundos cargado en CC[0].
+ * @note El temporizador utiliza una frecuencia de 1 MHz y reinicia el contador
+ *       automáticamente tras cada comparación con CC[0].
+ */
 void setTimer(uint32_t periodoMicrosegundos) {
 
   NRF_TIMER3->TASKS_STOP = 1;    // Detiene el timer por seguridad
@@ -37,6 +52,9 @@ void setTimer(uint32_t periodoMicrosegundos) {
 }
 
 
+/**
+ * @brief Detiene TIMER3, deshabilita su interrupción y borra la marca pendiente.
+ */
 void stopTimer()
 {
     NRF_TIMER3->TASKS_STOP = 1;
@@ -48,6 +66,12 @@ void stopTimer()
     interrupts();
 }
 
+/**
+ * @brief Consulta y consume la marca de interrupción del TIMER3.
+ * @return true si se produjo al menos una comparación desde la última consulta;
+ *         false si no hay ninguna pendiente.
+ * @note Varias comparaciones antes de la consulta se representan con una sola marca.
+ */
 bool hayInterrupcionTimer() {
   bool hayInterrupcion;
 
