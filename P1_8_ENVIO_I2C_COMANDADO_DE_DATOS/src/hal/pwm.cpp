@@ -1,13 +1,24 @@
+/**
+ * @file pwm.cpp
+ * @brief Configuración de la salida PWM y actualización de su ciclo de trabajo.
+ */
 #include "hal/pwm.h"
 #include "config.h"
 #include <Arduino.h>
 #include <mbed.h>
 
 // Puntero al objeto que controlará el PWM.
-// static: solo se puede usar dentro de adc.cpp y existe todo el programa.
+// static: solo se puede usar dentro de pwm.cpp y existe todo el programa.
 // nullptr: al empezar todavía no se ha creado ningún PWM.
 static mbed::PwmOut* pwm = nullptr;
 
+/**
+ * @brief Crea la salida PWM en un pin y establece su frecuencia.
+ * @param pin Pin Arduino utilizado como salida PWM.
+ * @param frecuencia Frecuencia solicitada en hercios.
+ * @pre frecuencia debe ser mayor que cero.
+ * @note El periodo se calcula en microsegundos mediante división entera.
+ */
 void initPWM(int pin, int frecuencia) {
   
   // Crea el PWM hardware asociado al pin Arduino indicado.
@@ -22,6 +33,11 @@ void initPWM(int pin, int frecuencia) {
   actualizarPWM(0);
 }
 
+/**
+ * @brief Establece el ciclo de trabajo de la salida PWM.
+ * @param duty Valor de ciclo de trabajo; se limita al intervalo 0 a PWM_MAX.
+ * @pre La salida PWM debe haberse creado mediante initPWM().
+ */
 void actualizarPWM(int duty) {
   duty = constrain(duty, 0, PWM_MAX);
   
